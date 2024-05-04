@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import axios from 'axios'
-import { View,Text,StyleSheet,TextInput,TouchableOpacity} from 'react-native'
+import { View,Text,StyleSheet,TextInput,TouchableOpacity, Alert} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 
@@ -16,13 +16,14 @@ export default function Login() {
         email,
         senha,
       })
-      if (response.data.success){
-        console.log('login realizado com sucesso')
+      const titulo = (response.status) ? 'sucesso': "erro"
+      if (response.status){
+        Alert.alert(titulo,response.data.mensagem)
       }else{
         setError('email ou senha invalidos')
-        console.log(email,senha)
       }
     }catch(error){
+      console.error(error)
       setError('erro ao logar')
     }
   }
