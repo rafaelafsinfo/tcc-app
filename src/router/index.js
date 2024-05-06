@@ -3,6 +3,7 @@ import { createNativeStackNavigator} from '@react-navigation/native-stack'
 import Home from '../screens/Home'
 import Login from '../screens/Login'
 import MainPage from '../screens/MainPage'
+import InstPage from '../screens/InstPage'
 
 const Stack = createNativeStackNavigator()
 
@@ -23,6 +24,11 @@ export default function Routes(){
                 <Stack.Screen
                     name='MainPage'
                     component={MainPage}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name='InstPage'
+                    component={InstPage}
                     options={{headerShown: false}}
                 />
             

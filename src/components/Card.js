@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
         borderRadius:25,
         borderStyle:'solid',
         borderColor:'#000',
-        backgroundColor:'#ff8c00',
+        backgroundColor:'#4e0189',
         marginVertical:8,
         marginHorizontal:16,
         
     },
     title:{
         fontSize:16,
-        color:'#4e0189',
+        color:'#fff',
         fontWeight:'bold',
         marginTop:28,
         marginBottom:12,
