@@ -3,22 +3,22 @@ import axios from 'axios'
 import { View,Text,StyleSheet,TextInput,TouchableOpacity, Alert} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
+import { useNavigation } from '@react-navigation/native'
 
 
 export default function Login() {
   const [email,setEmail] = useState('')
   const [senha,setSenha] = useState('')
   const [error,setError] = useState(null)
-  
+  const navigation = useNavigation()
   const handleSubmit = async () =>{
     try{
       const response = await axios.post('http://15.228.203.122:3000/Login/Usuario',{
         email,
         senha,
       })
-      const titulo = (response.status) ? 'sucesso': "erro"
       if (response.status){
-        Alert.alert(titulo,response.data.mensagem)
+        navigation.navigate('MainPage')
       }else{
         setError('email ou senha invalidos')
       }
