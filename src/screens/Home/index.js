@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { 
   View,
   Text,
@@ -9,30 +9,50 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
+import { isEnabled } from 'react-native/Libraries/Performance/Systrace'
 
 export default function Home() {
-const navigation = useNavigation()
+  const[btn1Visible,setbtn1Visible] = useState(false)
+  const[btn2Visible,setbtn2Visible] = useState(true)
+  const navigation = useNavigation()
 
+  const handlepress = () => {
+    setbtn1Visible(!btn1Visible)
+    setbtn2Visible(!btn2Visible)
+  }
   return (
     <SafeAreaView style={styles.container}>
-                <View style={styles.containerLogo}>
-          <Animatable.Image
-            animation='flipInY'
-            source={require('../../assets/logo.png')}
-            style={{width:'100%'}}
-            resizeMode='contain'
-          />
-        </View>
+          <TouchableOpacity 
+          style={styles.containerLogo}
+          onPress={handlepress}
+          >
+              <Animatable.Image
+                animation='flipInY'
+                source={require('../../assets/logo.png')}
+                style={{width:'100%'}}
+                resizeMode='contain'
+                
+                />
+        </TouchableOpacity>
 
         <Animatable.View delay={600} animation='fadeInUp' style={styles.containerForm}>
           <Text style={styles.title}>Doe para todo o Brasil de qualquer lugar!</Text>
           <Text style={styles.text}>Faça seu Login para começar</Text>
 
-          <TouchableOpacity 
+          {btn1Visible && (<TouchableOpacity 
+          style={styles.button}
+          onPress={()=> navigation.navigate('LoginInst')
+          }>
+            <Text style={styles.buttonText}>Acessar Instituicao</Text>
+          </TouchableOpacity>)}
+
+          {btn2Visible && (<TouchableOpacity 
           style={styles.button}
           onPress={()=> navigation.navigate('Login')}>
             <Text style={styles.buttonText}>Acessar</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>)}
+
+          
         </Animatable.View>
 
     </SafeAreaView>

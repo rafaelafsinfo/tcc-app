@@ -7,14 +7,14 @@ import { useNavigation } from '@react-navigation/native'
 
 
 
-export default function Login() {
+export default function LoginInst() {
   const [email,setEmail] = useState('')
   const [senha,setSenha] = useState('')
   const [error,setError] = useState(null)
   const navigation = useNavigation()
   const handleSubmit = async () =>{
     try{
-      const response = await api.post('/Login/Usuario',{
+      const response = await api.post('/Login/Instituicao',{
         email,
         senha,
       })

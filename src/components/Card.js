@@ -1,8 +1,21 @@
 import React from "react";
 import { TouchableOpacity,Text,StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 export default function({cnpj,nome_inst,rua,numero,bairro,cidade,estado,cep,descricao}){
+const navigation = useNavigation()
     return(
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity 
+        style={styles.card}
+        onPress={() => navigation.navigate('InstPage', {
+            cnpj:cnpj, 
+            nome_inst: nome_inst,
+            rua: rua, 
+            numero: numero, 
+            bairro: bairro, 
+            cidade: cidade, 
+            estado: estado, 
+            cep: cep, 
+            descricao: descricao})}>
             <Text style={styles.text}>
                 <Text style={styles.title}>cnpj</Text> : {cnpj}
             </Text>

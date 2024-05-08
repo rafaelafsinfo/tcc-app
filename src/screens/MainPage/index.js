@@ -4,13 +4,12 @@ import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Card from '../../components/Card'
 import { ScrollView } from 'react-native-web';
-import axios from 'axios';
-
+import api from '../../services/api';
 
 export default function MainPage() {
   const [data,setData] = useState(null)
   useEffect(() => {
-    axios.get('http://15.228.203.122:3000/Instituicao')
+    api.get('/Instituicao')
     .then(response => {
       setData(response.data.dados)
     })
