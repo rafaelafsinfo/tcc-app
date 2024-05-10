@@ -17,6 +17,9 @@ export default function Login() {
       const response = await api.post('/Login/Usuario',{
         email,
         senha,
+        Headers:{
+          'Access-Control-Allow-Origin': '*'
+        }
       })
       if (response.status){
         navigation.navigate('MainPage')
