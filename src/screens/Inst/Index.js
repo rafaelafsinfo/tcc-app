@@ -6,11 +6,11 @@ import {useRoute} from '@react-navigation/native'
 
 export default function Inst() {
     const route = useRoute();
-    const {email} = route.params
+    const {emailinst} = route.params
     const [data,setData] = useState(null)
 
   useEffect(() => {
-    api.get(`/Instituicao/${email}`)
+    api.get(`/Instituicao/${emailinst}`)
     .then(response => {
       setData(response.data.dados)
     })

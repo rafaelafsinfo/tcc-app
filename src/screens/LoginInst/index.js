@@ -17,12 +17,9 @@ export default function LoginInst() {
       const response = await api.post('/Login/Instituicao',{
         email,
         senha,
-        Headers:{
-          'Access-Control-Allow-Origin': '*'
-        }
       })
       if (response.status){
-        navigation.navigate('Inst',{email})
+        navigation.navigate('Inst',{emailinst : email})
       }else{
         setError('email ou senha invalidos')
         console.log(error)
