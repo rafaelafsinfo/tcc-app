@@ -6,6 +6,8 @@ import LoginInst from '../screens/LoginInst'
 import MainPage from '../screens/MainPage'
 import InstPage from '../screens/InstPage'
 import Inst from '../screens/Inst'
+import Cadastro from '../screens/Cadastro'
+import CadastroInst from '../screens/CadastroInst'
 
 const Stack = createNativeStackNavigator()
 
@@ -42,6 +44,16 @@ export default function Routes(){
                 <Stack.Screen
                     name='Inst'
                     component={Inst}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name='Cadastro'
+                    component={Cadastro}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name='CadastroInst'
+                    component={CadastroInst}
                     options={{headerShown: false}}
                 />
             

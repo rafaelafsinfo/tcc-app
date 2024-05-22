@@ -64,7 +64,9 @@ export default function LoginInst() {
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity> 
         <TouchableOpacity style={styles.buttonRegister}>
-          <Text style={styles.registerText}>Não possui uma conta? <Text style={styles.registerSpan}>Cadastre-se</Text ></Text>
+          <Text 
+          style={styles.registerText}
+          onPress={()=> navigation.navigate('CadastroInst')}>Não possui uma conta? <Text style={styles.registerSpan}>Cadastre-se</Text ></Text>
         </TouchableOpacity>
         {error && <Text style={{color:'red'}}>{error}</Text>}
       </Animatable.View>

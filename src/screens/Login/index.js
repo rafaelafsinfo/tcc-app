@@ -64,7 +64,9 @@ export default function Login() {
         onPress={handleSubmit}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity> 
-        <TouchableOpacity style={styles.buttonRegister}>
+        <TouchableOpacity 
+        style={styles.buttonRegister}
+        onPress={()=> navigation.navigate('Cadastro')}>
           <Text style={styles.registerText}>Não possui uma conta? <Text style={styles.registerSpan}>Cadastre-se</Text ></Text>
         </TouchableOpacity>
         {error && <Text style={{color:'red'}}>{error}</Text>}
