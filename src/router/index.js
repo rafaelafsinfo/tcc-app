@@ -8,6 +8,7 @@ import InstPage from '../screens/InstPage'
 import Inst from '../screens/Inst'
 import Cadastro from '../screens/Cadastro'
 import CadastroInst from '../screens/CadastroInst'
+import QrCode from '../screens/qrcode'
 
 const Stack = createNativeStackNavigator()
 
@@ -54,6 +55,11 @@ export default function Routes(){
                 <Stack.Screen
                     name='CadastroInst'
                     component={CadastroInst}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name='QrCode'
+                    component={QrCode}
                     options={{headerShown: false}}
                 />
             
