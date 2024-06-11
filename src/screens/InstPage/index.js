@@ -16,8 +16,7 @@ import {
 } from 'react-native-qr-svg';
 
 
-const SIZE = 170;
-const CONTENT = 'Hello world!';
+
 
 
 
@@ -26,6 +25,8 @@ export default function InstPage() {
   const route = useRoute();
   const { cnpj,nome_inst,rua,numero,bairro,cidade,estado,cep,descricao } = route.params;
 
+  const SIZE = 170
+  const CONTENT = `${cnpj}`
   return (
     <SafeAreaView style={styles.container}>
       <Animatable.View animation='fadeInLeft' delay={500} style={styles.containerHeader}>
@@ -33,25 +34,30 @@ export default function InstPage() {
         
       
       </Animatable.View>
-      <View style={styles.root}>
-      <View style={styles.content}>
-      <QrCodeSvg
-          style={styles.qr}
-          renderer={{ ...plainRenderer, options: { padding: 0 } }}
-          value={CONTENT}
-          frameSize={SIZE}
-        />
-      </View>
-    </View>
-      <Animatable.View animation='fadeInUp' delay={600} style={styles.containerForm}>
-        <Text>{cnpj}</Text>
-        <Text>{rua}</Text>
-        <Text>{numero}</Text>
-        <Text>{bairro}</Text>
-        <Text>{cidade}</Text>
-        <Text>{estado}</Text>
-        <Text>{cep}</Text>
-        <Text>{descricao}</Text>
+
+      <Animatable.View style={styles.containerForm}>
+        <Animatable.View animation='fadeInUp' delay={600}>
+          <Animatable.Text animation='slideInLeft' delay={900}>{cnpj}</Animatable.Text>
+          <Animatable.Text animation='slideInRight' delay={900}>{rua}</Animatable.Text>
+          <Animatable.Text animation='slideInLeft' delay={900}>{numero}</Animatable.Text>
+          <Animatable.Text animation='slideInRight' delay={900}>{bairro}</Animatable.Text>
+          <Animatable.Text animation='slideInLeft' delay={900}>{cidade}</Animatable.Text>
+          <Animatable.Text animation='slideInRight' delay={900}>{estado}</Animatable.Text>
+          <Animatable.Text animation='slideInLeft' delay={900}>{cep}</Animatable.Text>
+          <Animatable.Text animation='slideInRight' delay={900}>{descricao}</Animatable.Text>
+        </Animatable.View>
+        
+        <Animatable.View animation='fadeInUp' delay={1200} style={styles.root}>
+          <View style={styles.content}>
+            <QrCodeSvg
+                style={styles.qr}
+                gradientColors={['#ba55d3','#000']}
+                backgroundColor='#f9f8f7'
+                value={CONTENT}
+                frameSize={SIZE}
+              />
+          </View>
+        </Animatable.View>
         
       </Animatable.View>
 
