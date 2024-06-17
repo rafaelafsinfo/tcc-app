@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "40520464-b2fa-4599-ae04-62731bcae6b1"
+      }
+    },
+    "owner": "rafael.freitas16"
   }
 }
