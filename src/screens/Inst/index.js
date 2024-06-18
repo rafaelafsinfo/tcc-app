@@ -73,7 +73,7 @@ export default function Inst() {
               <TextInput
         
                 style={styles.input}
-                defaultValue={item.cnpj}
+                defaultValue={item.Cnpj}
                 onChangeText={setCnpj}
                 readOnly={true}
         
@@ -84,7 +84,7 @@ export default function Inst() {
                 <TextInput
         
                 style={styles.input}
-                defaultValue={item.email}
+                defaultValue={item.Email}
                 readOnly={true}
                 onChangeText={(text) => setEmail(text)}
         
@@ -96,7 +96,7 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.nome_inst}
+                defaultValue={item.nomeInst}
         
                 onChangeText={(text) => setNomeInst(text)}
         
@@ -111,7 +111,7 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.rua}
+                defaultValue={item.Rua}
         
                 onChangeText={(text) => setRua(text)}
         
@@ -125,7 +125,7 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.numero}
+                defaultValue={item.Numero}
         
                 onChangeText={(text) => setNumero(text)}
         
@@ -139,7 +139,7 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.bairro}
+                defaultValue={item.Bairro}
         
                 onChangeText={(text) => setBairro(text)}
         
@@ -152,7 +152,7 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.cidade}
+                defaultValue={item.Cidade}
         
                 onChangeText={(text) => setCidade(text)}
         
@@ -165,7 +165,7 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.estado}
+                defaultValue={item.Estado}
         
                 onChangeText={(text) => setEstado(text)}
         
@@ -178,11 +178,10 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.cep}
+                defaultValue={item.CEP}
         
                 onChangeText={(text) => setCep(text)}
         
-                placeholder="00000-000"
         
               />
         
@@ -193,7 +192,7 @@ export default function Inst() {
         
                 style={styles.input}
         
-                defaultValue={item.descricao}
+                defaultValue={item.Descricao}
                 
                 onChangeText={(text) => setDescricao(text)}
                 
