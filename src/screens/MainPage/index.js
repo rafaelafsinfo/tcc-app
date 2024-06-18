@@ -19,17 +19,17 @@ export default function MainPage() {
         <FlatList style={styles.cards}
         data={data}
         renderItem={({item}) => <Card
-        cnpj={item.cnpj}
-        nome_inst={item.nome_inst}
-        rua={item.rua}
-        numero={item.numero}
-        bairro={item.bairro}
-        cidade={item.cidade}
-        estado={item.estado}
+        cnpj={item.Cnpj}
+        nome_inst={item.NomeInst}
+        rua={item.Rua}
+        numero={item.Numero}
+        bairro={item.Bairro}
+        cidade={item.Cidade}
+        estado={item.Estado}
         cep={item.CEP}
-        descricao={item.descricao}
+        descricao={item.Descricao}
         />}
-        keyExtractor={item => item.cnpj}
+        keyExtractor={item => item.Cnpj}
         />
     </SafeAreaView>
   )

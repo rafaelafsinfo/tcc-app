@@ -5,6 +5,7 @@ import api from '../../services/api';
 
 import {useRoute} from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { TouchableOpacity } from 'react-native-web';
 
 export default function Inst() {
     const route = useRoute();
@@ -61,164 +62,231 @@ export default function Inst() {
 
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-              <FlatList style={styles.form}
+    <SafeAreaView style={styles.container}>
+
+      
+              <FlatList 
               data={data}
               renderItem={({item}) => 
-                <View style={styles.container}>
+                <View style={styles.containerForm}>
 
-              <Text style={styles.label}>CNPJ:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-                defaultValue={item.Cnpj}
-                onChangeText={setCnpj}
-                readOnly={true}
-        
-              />
-        
-                <Text style={styles.label}>E-mail:</Text>
-        
-                <TextInput
-        
-                style={styles.input}
-                defaultValue={item.Email}
-                readOnly={true}
-                onChangeText={(text) => setEmail(text)}
-        
-                />
-        
-              <Text style={styles.label}>Nome da Instituição:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.nomeInst}
-        
-                onChangeText={(text) => setNomeInst(text)}
-        
-              />
-        
-        
-        
-        
-              <Text style={styles.label}>Rua:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.Rua}
-        
-                onChangeText={(text) => setRua(text)}
-        
-        
-              />
-        
-        
-              <Text style={styles.label}>Número:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.Numero}
-        
-                onChangeText={(text) => setNumero(text)}
-        
-        
-              />
-        
-        
-              <Text style={styles.label}>Bairro:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.Bairro}
-        
-                onChangeText={(text) => setBairro(text)}
-        
-              />
-        
-        
-              <Text style={styles.label}>Cidade:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.Cidade}
-        
-                onChangeText={(text) => setCidade(text)}
-        
-              />
-        
-        
-              <Text style={styles.label}>Estado:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.Estado}
-        
-                onChangeText={(text) => setEstado(text)}
-        
-              />
-        
-        
-              <Text style={styles.label}>CEP:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.CEP}
-        
-                onChangeText={(text) => setCep(text)}
-        
-        
-              />
-        
-        
-              <Text style={styles.label}>Descrição:</Text>
-        
-              <TextInput
-        
-                style={styles.input}
-        
-                defaultValue={item.Descricao}
-                
-                onChangeText={(text) => setDescricao(text)}
-                
+                  <Text style={styles.title}>CNPJ:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+                    defaultValue={item.Cnpj}
+                    onChangeText={setCnpj}
+                    readOnly={true}
+            
+                  />
+            
+                    <Text style={styles.title}>E-mail:</Text>
+            
+                    <TextInput
+            
+                    style={styles.input}
+                    defaultValue={item.Email}
+                    readOnly={true}
+                    onChangeText={(text) => setEmail(text)}
+            
+                    />
+            
+                  <Text style={styles.title}>Nome da Instituição:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.NomeInst}
+            
+                    onChangeText={(text) => setNomeInst(text)}
+            
+                  />
+            
+            
+            
+            
+                  <Text style={styles.title}>Rua:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.Rua}
+            
+                    onChangeText={(text) => setRua(text)}
+            
+            
+                  />
+            
+            
+                  <Text style={styles.title}>Número:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.Numero}
+            
+                    onChangeText={(text) => setNumero(text)}
+            
+            
+                  />
+            
+            
+                  <Text style={styles.title}>Bairro:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.Bairro}
+            
+                    onChangeText={(text) => setBairro(text)}
+            
+                  />
+            
+            
+                  <Text style={styles.title}>Cidade:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.Cidade}
+            
+                    onChangeText={(text) => setCidade(text)}
+            
+                  />
+            
+            
+                  <Text style={styles.title}>Estado:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.Estado}
+            
+                    onChangeText={(text) => setEstado(text)}
+            
+                  />
+            
+            
+                  <Text style={styles.title}>CEP:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.CEP}
+            
+                    onChangeText={(text) => setCep(text)}
+            
+            
+                  />
+            
+            
+                  <Text style={styles.title}>Descrição:</Text>
+            
+                  <TextInput
+            
+                    style={styles.input}
+            
+                    defaultValue={item.Descricao}
+                    
+                    onChangeText={(text) => setDescricao(text)}
+                    
 
-                multiline={true}
-        
-                numberOfLines={4}
-        
-              />
-        
-        
-              <View style={styles.buttonContainer}>
-        
-                <Text style={styles.button} onPress={handleSave}>Salvar</Text>
-        
-              </View>
-        
+                    multiline={true}
+            
+                    numberOfLines={4}
+            
+                  />
+            
+            
+                  <View style={styles.button}>
+            
+                    <Text style={styles.buttonText} onPress={handleSave}>Salvar</Text>
+            
+                  </View>
+                  <View style={styles.button}>
+                        <Text style={styles.buttonText}> Ler qr code</Text>
+                  </View>
+                  
             </View>
               }
-              
-              />
-      </ScrollView>
+        />
+
+      
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:'#4e0189'
+  },
+  containerHeader:{
+    marginTop:'13%',
+    marginBottom:'8%',
+    paddingStart:'5%',
+    
+  },
+  message:{
+    fontSize:28,
+    fontWeight:'bold',
+    color:'#fff',
+  },
+  containerForm:{
+    flex:1,
+    borderTopLeftRadius:25,
+    borderTopRightRadius:25,
+    paddingStart:'5%',
+    paddingEnd:'5%',
+    backgroundColor: '#f6f7f9'
 
+  },
+  title:{
+    fontSize:20,
+    marginTop:28,
+    color:'#4E0189'
+  },
+  input:{
+    borderWidth:1,
+    borderRadius:10,
+    paddingStart:8,
+    paddingEnd:8,
+    height:40,
+    marginBottom:12,
+    fontSize:16,
+    borderColor:'#cdd1e0'
+  },
+  button:{
+    backgroundColor:'#4e0189',
+    width:'100%',
+    borderRadius:10,
+    paddingVertical:8,
+    marginTop:14,
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  buttonText:{
+    color:'#fff',
+    fontSize:18,
+    fontWeight:'bold'
+  },
+buttonRegister:{
+  position:'absolute',
+  bottom:'5%',
+  alignSelf:'center'
+  },
+  registerText:{
+    color:'#999ea1'
+  },
+  registerSpan:{
+    color:'#4e0189'
+  }
 })

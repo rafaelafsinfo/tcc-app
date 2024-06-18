@@ -9,15 +9,12 @@ import Inst from '../screens/Inst'
 import Cadastro from '../screens/Cadastro'
 import CadastroInst from '../screens/CadastroInst'
 
-import UserProvider from '../services/contexts/UserContext'
-
 const Stack = createNativeStackNavigator()
 
 export default function Routes(){
     return(
+   
         <Stack.Navigator>
-            <UserProvider>
-
             
                 <Stack.Screen
                     name='Home'
@@ -61,7 +58,7 @@ export default function Routes(){
                     component={CadastroInst}
                     options={{headerShown: false}}
                 />
-            </UserProvider> 
+            
             
         </Stack.Navigator>
     )

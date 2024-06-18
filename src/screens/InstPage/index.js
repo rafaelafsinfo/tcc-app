@@ -3,23 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import {useRoute} from '@react-navigation/native'
-import {
-  QrCodeSvg,
-  plainRenderer,
-  triangleRenderer,
-  circleRenderer,
-  renderCircle,
-  RenderParams,
-  renderSquare,
-  CustomRenderer,
-  Kind,
-} from 'react-native-qr-svg';
-
-
-
-
-
-
+import {QrCodeSvg} from 'react-native-qr-svg';
 
 export default function InstPage() {
   const route = useRoute();
