@@ -8,6 +8,7 @@ import InstPage from '../screens/InstPage'
 import Inst from '../screens/Inst'
 import Cadastro from '../screens/Cadastro'
 import CadastroInst from '../screens/CadastroInst'
+import Rastreio from '../screens/Rastreio'
 
 const Stack = createNativeStackNavigator()
 
@@ -58,6 +59,12 @@ export default function Routes(){
                     component={CadastroInst}
                     options={{headerShown: false}}
                 />
+                <Stack.Screen
+                    name='Rastreio'
+                    component={Rastreio}
+                    options={{headerShown: false}}
+                />
+                
             
             
         </Stack.Navigator>

@@ -3,6 +3,7 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import api from '../../services/api';
 
+import { useNavigation } from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-web';
@@ -22,6 +23,7 @@ export default function Inst() {
     const [estado, setEstado] = useState('');
     const [cep, setCep] = useState('');
     const [descricao, setDescricao] = useState('');
+    const navigation = useNavigation()
     const [error,setError] = useState(null)
 
   useEffect(() => {
@@ -56,6 +58,15 @@ export default function Inst() {
 
     }catch(error){
         setError(`error ao alterar dados: ${error}`)
+        console.error(error)
+    }
+  }
+
+  const handleNavigate = async () =>{
+    try{
+        navigation.navigate('Rastreio')
+    }catch(error){
+        setError(`error ao utilizar o navigate: ${error}`)
         console.error(error)
     }
   }
@@ -212,7 +223,7 @@ export default function Inst() {
             
                   </View>
                   <View style={styles.button}>
-                        <Text style={styles.buttonText}> Ler qr code</Text>
+                        <Text style={styles.buttonText} onPress={handleNavigate}> Ler qr code</Text>
                   </View>
                   
             </View>
