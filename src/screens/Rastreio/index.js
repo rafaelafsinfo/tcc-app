@@ -34,6 +34,7 @@ export default function Rastreio() {
 
   return (
     <SafeAreaView>
+      <Text>escaneie o codigo</Text>
       <CameraView style={styles.camera} facing={facing}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
