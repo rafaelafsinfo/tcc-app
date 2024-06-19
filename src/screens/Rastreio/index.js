@@ -41,6 +41,7 @@ export default function Rastreio() {
           </TouchableOpacity>
         </View>
       </CameraView>
+
     </SafeAreaView>
   )
 }
