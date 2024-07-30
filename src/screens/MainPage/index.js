@@ -6,33 +6,54 @@ import Card from '../../components/Card'
 import { ScrollView } from 'react-native-web';
 import api from '../../services/api';
 
-export default function MainPage() {
-  const [data,setData] = useState(null)
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Inst from '../Inst/index';
+import InstPage from '../InstPage/index';
+
+const Tab = createBottomTabNavigator();
+
+function MainContent() {
+  const [data, setData] = useState(null);
+
   useEffect(() => {
     api.get('/Instituicao')
-    .then(response => {
-      setData(response.data.dados)
-    })
-  })
+      .then(response => {
+        setData(response.data.dados);
+      });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
-        <FlatList style={styles.cards}
+      <FlatList
+        style={styles.cards}
         data={data}
-        renderItem={({item}) => <Card
-        cnpj={item.Cnpj}
-        nome_inst={item.NomeInst}
-        rua={item.Rua}
-        numero={item.Numero}
-        bairro={item.Bairro}
-        cidade={item.Cidade}
-        estado={item.Estado}
-        cep={item.CEP}
-        descricao={item.Descricao}
-        />}
+        renderItem={({ item }) => (
+          <Card
+            cnpj={item.Cnpj}
+            nome_inst={item.NomeInst}
+            rua={item.Rua}
+            numero={item.Numero}
+            bairro={item.Bairro}
+            cidade={item.Cidade}
+            estado={item.Estado}
+            cep={item.CEP}
+            descricao={item.Descricao}
+          />
+        )}
         keyExtractor={item => item.Cnpj}
-        />
+      />
     </SafeAreaView>
-  )
+  );
+}
+
+export default function MainPage() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={MainContent}/>
+      <Tab.Screen name="Inst" component={Inst} />
+      <Tab.Screen name="InstPage" component={InstPage} />
+    </Tab.Navigator>
+  );
 }
 
 const styles = StyleSheet.create({
