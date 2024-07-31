@@ -1,16 +1,64 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { StyleSheet, Text, View,TouchableOpacity,TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import {useRoute} from '@react-navigation/native'
 import {QrCodeSvg} from 'react-native-qr-svg';
+import RNDateTimePicker from '@react-native-community/datetimepicker'
 
 export default function InstPage() {
+  
+  const[btn1Visible,setbtn1Visible] = useState(true)
+  const[btn2Visible,setbtn2Visible] = useState(false)
   const route = useRoute();
   const { cnpj,nome_inst,rua,numero,bairro,cidade,estado,cep,descricao } = route.params;
+  const [idUsuario,setIdUsuario] = useState('')
+  const [idInstituicao,setIdinstituicao] = useState(cnpj)
+  const [produto,setProduto] = useState('')
+  const [data,setData] = useState('')
+  function formatDate(date,format) {
+    const map = {
+      mm: date.getMonth()+1,
+      dd: date.getDate(),
+      aaaa: date.getFullYear()
+    }
+    return format.replace(/mm|dd|aaaa/gi, matched => map[matched])
+  }
+  const today = new Date()
+  const formattedDate = formatDate(today,'mm/dd/aaaa')
+  useEffect(() => {
+    setData(formattedDate)
+  },[])
+  console.log(formattedDate)
+  const handleSubmit = async () =>{
+    try{
+      const response = await api.post('/Login/Usuario',{
+        idUsuario,
+        idInstituicao,
+        produto,
+        data
+
+      })
+      if (response.status){
+        //navigation.navigate('MainPage')
+      }else{
+        setError('email ou senha invalidos')
+        console.log(error)
+      }
+    }catch(error){
+      setError('erro ao logar')
+      console.log(error)
+    }
+  }
 
   const SIZE = 170
   const CONTENT = `${cnpj}`
+
+  const handlepress = () => {
+    setbtn1Visible(!btn1Visible)
+    setbtn2Visible(!btn2Visible)
+  }
   return (
     <SafeAreaView style={styles.container}>
       <Animatable.View animation='fadeInLeft' delay={500} style={styles.containerHeader}>
@@ -33,13 +81,42 @@ export default function InstPage() {
         
         <Animatable.View animation='fadeInUp' delay={1200} style={styles.root}>
           <View style={styles.content}>
-            <QrCodeSvg
-                style={styles.qr}
-                gradientColors={['#ba55d3','#000']}
-                backgroundColor='#f9f8f7'
-                value={CONTENT}
-                frameSize={SIZE}
-              />
+
+            
+          {btn1Visible && ( <TouchableOpacity 
+          style={styles.button}
+          onPress={handlepress}>
+            <Text style={styles.buttonText}>doar</Text>
+          </TouchableOpacity>)}
+
+          {btn2Visible && (
+            <SafeAreaView>
+              
+              <TextInput
+                value={produto}
+                style={styles.input}
+                placeholder='Digite o produto a ser doado'
+                keyboardType='default'
+                autoCapitalize='none'
+                autoComplete='email'
+                
+                onChangeText={text => setProduto(text)}
+                />
+                
+              <TouchableOpacity 
+            style={styles.button}
+            onPress={handleSubmit}>
+              <Text style={styles.buttonText}>doar</Text>
+            </TouchableOpacity>
+            
+              <TouchableOpacity 
+            style={styles.button}
+            onPress={handlepress}>
+              <Text style={styles.buttonText}>cancelar</Text>
+            </TouchableOpacity>
+          </SafeAreaView>
+        )}
+
           </View>
         </Animatable.View>
         
@@ -92,6 +169,32 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button:{
+    position:'relative',
+    backgroundColor:'#ff8c00',
+    borderRadius:50,
+    paddingVertical:8,
+    width:'60%',
+    alignSelf:'center',
+    marginBottom:'2.5%',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  buttonText:{
+    fontSize:18,
+    color:'#fff',
+    fontWeight:'bold'
+  },
+  input:{
+    borderWidth:1,
+    borderRadius:10,
+    paddingStart:8,
+    paddingEnd:8,
+    height:40,
+    marginBottom:12,
+    fontSize:16,
+    borderColor:'#cdd1e0'
   },
   
 })
