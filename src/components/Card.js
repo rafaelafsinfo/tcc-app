@@ -50,9 +50,7 @@ const navigation = useNavigation()
 const styles = StyleSheet.create({
     card:{
         padding:'2.5%',
-        borderWidth:4,
         borderRadius:25,
-        borderStyle:'solid',
         borderColor:'#000',
         backgroundColor:'#4e0189',
         marginVertical:8,

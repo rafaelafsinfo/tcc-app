@@ -71,6 +71,7 @@ export default function Login() {
         <TouchableOpacity 
         style={styles.buttonRegister}
         onPress={()=> navigation.navigate('Cadastro')}>
+        
           <Text style={styles.registerText}>Não possui uma conta? <Text style={styles.registerSpan}>Cadastre-se</Text ></Text>
         </TouchableOpacity>
         {error && <Text style={{color:'red'}}>{error}</Text>}
