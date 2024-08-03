@@ -17,7 +17,7 @@ function AuthProvider({ children }){
             sobrenome: sobrenome,
             email: email
         })
-        navigation.navigate("Profile")
+        navigation.navigate("Main")
         console.log(user)
     }
     function signIn (Cnpj, NomeInst, Email, Rua, Numero, Bairro, Cidade,Estado,CEP,Descricao){

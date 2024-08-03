@@ -37,7 +37,7 @@ export default function CadastroInst() {
         descricao,
       })
       if (response.status){
-        navigation.navigate('MainPage')
+        navigation.navigate('Main')
       }else{
         setError('email ou senha invalidos')
         console.log(error)

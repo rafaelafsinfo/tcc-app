@@ -1,11 +1,10 @@
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
 
-import MainPage from '../screens/Usuario/MainPage'
-import InstPage from '../screens/Usuario/InstPage'
-import Inst from '../screens/Instituicao/Inst'
+import MainPage from '../screens/MainPage'
+import InstPage from '../screens/InstPage'
+import Inst from '../screens/Inst'
 import Rastreio from '../screens/Rastreio'
-import Profile from '../screens/Usuario/Perfil'
-import OpcoesUsuario from '../screens/Usuario/OpcoesUsuario'
+import Profile from '../screens/Profile'
 
 const Stack = createNativeStackNavigator()
 
@@ -24,6 +23,11 @@ export default function Routes(){
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
+                    name='Inst'
+                    component={Inst}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
                     name='Rastreio'
                     component={Rastreio}
                     options={{headerShown: false}}
@@ -31,11 +35,6 @@ export default function Routes(){
                 <Stack.Screen
                     name='Profile'
                     component={Profile}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name='OpcoesUsuario'
-                    component={OpcoesUsuario}
                     options={{headerShown: false}}
                 />
             
