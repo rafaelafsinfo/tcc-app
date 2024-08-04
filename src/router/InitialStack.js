@@ -1,10 +1,10 @@
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
 
 import Home from '../screens/Home'
-import Login from '../screens/Login'
-import LoginInst from '../screens/LoginInst'
-import Cadastro from '../screens/Cadastro'
-import CadastroInst from '../screens/CadastroInst'
+import Login from '../screens/Usuario/Login'
+import LoginInst from '../screens/Instituicao/LoginInst'
+import Cadastro from '../screens/Usuario/Cadastro'
+import CadastroInst from '../screens/Instituicao/CadastroInst'
 import Main from './Tab'
 
 const Stack = createNativeStackNavigator()

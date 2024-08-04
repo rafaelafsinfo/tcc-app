@@ -8,9 +8,9 @@ function AuthProvider({ children }){
     const navigation = useNavigation()
 
     function signIn (id, p_nome, sobrenome, email){
-        if(id !== ''){
+        /*if(id !== ''){
             
-        }
+        }*/
         setUser({
             id: id,
             p_nome: p_nome,
