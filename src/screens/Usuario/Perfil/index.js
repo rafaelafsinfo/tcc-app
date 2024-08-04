@@ -1,28 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useContext } from 'react'
 import { StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import * as Animatable from 'react-native-animatable'
-import { UserContext } from '../../contexts/UserContext';
+import { useNavigation } from '@react-navigation/native';
+import { UserContext } from '../../../contexts/UserContext';
 
 export default function Profile() {
-const { user } = useContext(UserContext)
+  
+  const navigation = useNavigation()
+  const { user } = useContext(UserContext)
 
   return (
     
     <SafeAreaView style={styles.container}>
 
       <Animatable.View animation='fadeInDown' delay={600} style={styles.containerHeader}>
+
         <Text style={styles.textmessage}>{user.p_nome}</Text>
+      
       </Animatable.View>
 
 
       <Animatable.View animation='fadeInUp' delay={500} style={styles.containerbuttoms}>
 
-      <TouchableOpacity style={styles.containerbuttom}>
-        <Text style={styles.textbuttom}>Account Manegment</Text>
+      <TouchableOpacity 
+      style={styles.containerbuttom}
+      onPress={()=> navigation.navigate('OpcoesUsuario')}> 
+        <Text style={styles.textbuttom}>Opções do Usuário</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.containerbuttom}>
+      <TouchableOpacity 
+      style={styles.containerbuttom}>
         <Text style={styles.textbuttom}>Permitions</Text>
       </TouchableOpacity>
 
