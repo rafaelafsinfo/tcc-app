@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import { StyleSheet, Text, View,TouchableOpacity,TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import {useRoute} from '@react-navigation/native'
+import api from '../../services/api'
 import {QrCodeSvg} from 'react-native-qr-svg';
-import RNDateTimePicker from '@react-native-community/datetimepicker'
+import { UserContext } from '../../contexts/UserContext';
+
 
 export default function InstPage() {
-  
+  const { user } = useContext(UserContext)
   const[btn1Visible,setbtn1Visible] = useState(true)
   const[btn2Visible,setbtn2Visible] = useState(false)
   const route = useRoute();
   const { cnpj,nome_inst,rua,numero,bairro,cidade,estado,cep,descricao } = route.params;
-  const [idUsuario,setIdUsuario] = useState('')
-  const [idInstituicao,setIdinstituicao] = useState(cnpj)
+  const [idUsuario,setIdUsuario] = useState("")
+  const [idInstituicao,setIdinstituicao] = useState("")
   const [produto,setProduto] = useState('')
   const [data,setData] = useState('')
+  const [error,setError] = useState(null)
   function formatDate(date,format) {
     const map = {
       mm: date.getMonth()+1,
@@ -29,13 +31,15 @@ export default function InstPage() {
   const formattedDate = formatDate(today,'mm/dd/aaaa')
   useEffect(() => {
     setData(formattedDate)
+    setIdUsuario(user.id)
+    setIdinstituicao(cnpj)
   },[])
   console.log(formattedDate)
   const handleSubmit = async () =>{
     try{
-      const response = await api.post('/Login/Usuario',{
-        idUsuario,
-        idInstituicao,
+      const response = await api.post('/Doacoes',{
+        id_usuario: idUsuario,
+        id_instituicao: idInstituicao,
         produto,
         data
 
@@ -91,7 +95,9 @@ export default function InstPage() {
 
           {btn2Visible && (
             <SafeAreaView>
-              
+            <Text>{idUsuario}</Text>
+            <Text>{idInstituicao}</Text>
+            <Text>{data}</Text>
               <TextInput
                 value={produto}
                 style={styles.input}
