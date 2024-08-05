@@ -14,9 +14,8 @@ export default function Profile() {
     <SafeAreaView style={styles.container}>
 
       <Animatable.View animation='fadeInDown' delay={600} style={styles.containerHeader}>
-
+        
         <Text style={styles.textmessage}>{user.p_nome}</Text>
-      
       </Animatable.View>
 
 
