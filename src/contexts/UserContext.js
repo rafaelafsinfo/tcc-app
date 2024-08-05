@@ -7,7 +7,7 @@ function AuthProvider({ children }){
     const [user,setUser] = useState(null)
     const navigation = useNavigation()
 
-    function signIn (id, p_nome, sobrenome, email){
+    function signIn (id, p_nome, sobrenome, email,cidade,estado,username){
         if(id !== ''){
             
         }
@@ -15,7 +15,10 @@ function AuthProvider({ children }){
             id: id,
             p_nome: p_nome,
             sobrenome: sobrenome,
-            email: email
+            email: email,
+            cidade: cidade,
+            estado: estado,
+            username: username
         })
         navigation.navigate("MainPage")
         console.log(user)

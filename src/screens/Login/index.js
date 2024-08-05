@@ -23,7 +23,8 @@ export default function Login() {
 
       })
       if (response.status){
-        signIn(response.data.id, response.data.p_nome, response.data.sobrenome, response.data.email)
+        const response2 = await api.get(`/Usuario/${email}`)
+        signIn(response.data.id,response.data.p_nome,response.data.sobrenome,response.data.email,response2.data.dados.cidade,response2.data.dados.estado,response2.data.dados.username)
       }else{
         setError('email ou senha invalidos')
         console.log(error)

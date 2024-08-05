@@ -20,7 +20,7 @@ export default function MainPage() {
   return (
     <SafeAreaView style={styles.container}>
 
-        <Text>{user.id}</Text>
+        <Text>{JSON.stringify(user)}</Text>
         <FlatList style={styles.cards}
         data={data}
         renderItem={({item}) => <Card
