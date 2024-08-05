@@ -95,9 +95,6 @@ export default function InstPage() {
 
           {btn2Visible && (
             <SafeAreaView>
-            <Text>{idUsuario}</Text>
-            <Text>{idInstituicao}</Text>
-            <Text>{data}</Text>
               <TextInput
                 value={produto}
                 style={styles.input}
@@ -105,6 +102,7 @@ export default function InstPage() {
                 keyboardType='default'
                 autoCapitalize='none'
                 autoComplete='email'
+                
                 
                 onChangeText={text => setProduto(text)}
                 />
