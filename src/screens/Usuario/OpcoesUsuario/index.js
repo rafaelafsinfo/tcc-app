@@ -12,6 +12,7 @@ export default function OpcoesUsuario(){
     const { user } = useContext(UserContext)
     const [p_nome, Setp_nome] = useState('')
     const [sobrenome, Setsobrenome] = useState('')
+    const [username, Setusername] = useState('')
     const [cidade, Setcidade] = useState('')
     const [estado, Setestado] = useState('')
 
@@ -47,46 +48,50 @@ export default function OpcoesUsuario(){
                     placeholder= 'sobrenome'
                     autoCapitalize='none'
                     autoComplete='nome'
-                    onChangeText={text => Setp_nome(text)}
+                    onChangeText={text => Setsobrenome(text)}
                 />
                 <Text style={styles.entradas}>Username:</Text>
                 <TextInput
-                    value={p_nome}
+                    value={user.username}
                     style={styles.input}
-                    placeholder= 'nome'
+                    placeholder= 'username'
                     autoCapitalize='none'
                     autoComplete='nome'
-                    onChangeText={text => Setp_nome(text)}
+                    onChangeText={text => Setusername(text)}
                 />
                 <Text style={styles.entradas}>Email:</Text>
                 <TextInput
                     value={user.email}
                     style={styles.input}
-                    placeholder= 'nome'
+                    placeholder= 'email'
                     autoCapitalize='none'
                     autoComplete='nome'
-                    onChangeText={text => Setp_nome(text)}
+                    onChangeText={text => Setemail(text)}
                 />
                 <Text style={styles.entradas}>Cidade:</Text>
                 <TextInput
                     value={user.cidade}
                     style={styles.input}
-                    placeholder= 'nome'
+                    placeholder= 'cidade'
                     autoCapitalize='none'
                     autoComplete='nome'
-                    onChangeText={text => Setp_nome(text)}
+                    onChangeText={text => Setcidade(text)}
                 />
                 <Text style={styles.entradas}>Estado:</Text>
                 <TextInput
                     value={user.estado}
                     style={styles.input}
-                    placeholder= 'nome'
+                    placeholder= 'estado'
                     autoCapitalize='none'
                     autoComplete='nome'
-                    onChangeText={text => Setp_nome(text)}
+                    onChangeText={text => Setestado(text)}
                 />
+                
                 <TouchableOpacity>
-                    <Text style={styles.botaosubmeter}>Submeter</Text>
+                    <Text 
+                    style={styles.botaosubmeter}>
+                        Submeter
+                    </Text>
                 </TouchableOpacity>
 
             </Animatable.View>
