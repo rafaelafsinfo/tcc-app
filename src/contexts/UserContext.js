@@ -7,18 +7,17 @@ function AuthProvider({ children }){
     const [user,setUser] = useState(null)
     const navigation = useNavigation()
 
-    function signIn (id, p_nome, sobrenome, email){
-        /*if(id !== ''){
-            
-        }*/
+    function signIn (id, p_nome, sobrenome, email, cidade, estado, username){
         setUser({
             id: id,
             p_nome: p_nome,
             sobrenome: sobrenome,
-            email: email
+            email: email,
+            cidade: cidade,
+            estado: estado,
+            username: username
         })
-        navigation.navigate("Main")
-        console.log(user)
+        navigation.navigate('Main')
     }
     function signIn (Cnpj, NomeInst, Email, Rua, Numero, Bairro, Cidade,Estado,CEP,Descricao){
         setUser({
