@@ -1,10 +1,10 @@
 import React,{useState, useContext} from 'react'
 import api from '../../services/api'
-import { View,Text,StyleSheet,TextInput,TouchableOpacity} from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
-
+import { UserContext } from '../../contexts/UserContext'
 
 
 
@@ -13,6 +13,8 @@ export default function Login() {
   const [senha,setSenha] = useState('')
   const [error,setError] = useState(null)
   const navigation = useNavigation()
+  const { signIn } = useContext(UserContext)
+
   const handleSubmit = async () =>{
     try{
       const response = await api.post('/Login/Usuario',{
@@ -21,7 +23,8 @@ export default function Login() {
 
       })
       if (response.status){
-        navigation.navigate('MainPage')
+        const response2 = await api.get(`/Usuario/${email}`)
+        signIn(response.data.id,response.data.p_nome,response.data.sobrenome,response.data.email,response2.data.dados.cidade,response2.data.dados.estado,response2.data.dados.username)
       }else{
         setError('email ou senha invalidos')
         console.log(error)
