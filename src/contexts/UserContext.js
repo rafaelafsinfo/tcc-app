@@ -23,6 +23,18 @@ function AuthProvider({ children }){
         navigation.navigate("MainPage")
         console.log(user)
     }
+    function signIn (id, nome_inst, sobrenome, email, cidade, estado, username){
+        setUser({
+            id: id,
+            nome_inst: nome_inst,
+            sobrenome: sobrenome,
+            email: email,
+            cidade: cidade,
+            estado: estado,
+            username: username
+        })
+        navigation.navigate('Main')
+    }
      return(
         <UserContext.Provider value={{signIn, user}}>
             {children}
