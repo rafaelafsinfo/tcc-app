@@ -17,6 +17,21 @@ function UserProvider(){
             })
         }
     }
+    function signIn (Cnpj, NomeInst, Email, Rua, Numero, Bairro, Cidade,Estado,CEP,Descricao){
+        setUser({
+            Cnpj: Cnpj,
+            NomeInst: NomeInst,
+            Email: Email,
+            Rua: Rua,
+            Numero: Numero,
+            Bairro: Bairro,
+            Cidade: Cidade,
+            Estado: Estado,
+            CEP: CEP,
+            Descricao: Descricao
+        })
+        navigation.navigate('Inst')
+    }
      return(
         <UserContext.Provider value={{login,user}}>
             {Children}
