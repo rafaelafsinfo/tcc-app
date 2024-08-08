@@ -149,4 +149,4 @@ buttonRegister:{
   registerSpan:{
     color:'#4e0189'
   }
-})
+ })

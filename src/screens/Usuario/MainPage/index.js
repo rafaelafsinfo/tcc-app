@@ -2,13 +2,13 @@ import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Card from '../../components/Card'
+import Card from '../../../components/Card';
 import { ScrollView } from 'react-native-web';
-import api from '../../services/api';
+import api from '../../../services/api';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Inst from '../Inst/index';
-import InstPage from '../InstPage/index';
+import Inst from '../../Instituicao/Inst';
+import InstPage from '../InstPage';
 
 const Tab = createBottomTabNavigator();
 
