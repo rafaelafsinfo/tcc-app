@@ -7,7 +7,7 @@ function AuthProvider({ children }){
     const [user,setUser] = useState(null)
     const navigation = useNavigation()
 
-    function signIn (id, p_nome, sobrenome, email, cidade, estado, username){
+    function signInUser (id, p_nome, sobrenome, email, cidade, estado, username){
         setUser({
             id: id,
             p_nome: p_nome,
@@ -19,7 +19,7 @@ function AuthProvider({ children }){
         })
         navigation.navigate('Main')
     }
-    function signIn (Cnpj, NomeInst, Email, Rua, Numero, Bairro, Cidade,Estado,CEP,Descricao){
+    function signInInst (Cnpj, NomeInst, Email, Rua, Numero, Bairro, Cidade,Estado,CEP,Descricao){
         setUser({
             Cnpj: Cnpj,
             NomeInst: NomeInst,
@@ -35,7 +35,7 @@ function AuthProvider({ children }){
         navigation.navigate('Inst')
     }
      return(
-        <UserContext.Provider value={{signIn, user}}>
+        <UserContext.Provider value={{signInUser,signInInst, user}}>
             {children}
         </UserContext.Provider>
      )

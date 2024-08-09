@@ -13,7 +13,7 @@ export default function LoginInst() {
   const [senha,setSenha] = useState('')
   const [error,setError] = useState(null)
   const navigation = useNavigation()
-  const { signIn } = useContext(UserContext)
+  const {signInInst} = useContext(UserContext)
   const handleSubmit = async () =>{
     try{
       const response = await api.post('/Login/Instituicao',{
@@ -22,7 +22,7 @@ export default function LoginInst() {
       })
       if (response.status == 200){
         const response2 = await api.get(`/Instituicao/${email}`)
-        signIn(
+        signInInst(
           response.data.Cnpj,
           response.data.NomeInst,
           response.data.Email,
