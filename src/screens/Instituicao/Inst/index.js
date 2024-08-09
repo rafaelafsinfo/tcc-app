@@ -9,9 +9,106 @@ import { UserContext } from '../../../contexts/UserContext';
 
 export default function Inst() {
   const { user } = useContext(UserContext)
+  const [Cnpj,SetCnpj] = useState('')
+  const [Nome,SetNome] = useState('')
+  const [Email,SetEmail] = useState('')
+  const [Rua,SetRua] = useState('')
+  const [Numero,SetNumero] = useState('')
+  const [Bairro,SetBairro] = useState('')
+  const [Cidade,SetCidade] = useState('')
+  const [Estado,SetEstado] = useState('')
+  const [CEP,SetCEP] = useState('')
+  const [Descricao,SetDescricao] = useState('')
+  useEffect(()=>{
+    SetCnpj(user.Cnpj)
+    SetNome(user.NomeInst)
+    SetEmail(user.Email)
+    SetRua(user.Rua)
+    SetNumero(user.Numero)
+    SetBairro(user.Bairro)
+    SetCidade(user.Cidade)
+    SetEstado(user.Estado)
+    SetCEP(user.CEP)
+    SetDescricao(user.Descricao)
+  })
+  
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{JSON.stringify(user)}</Text>      
+      <ScrollView>
+
+      <Text style={styles.title}>cnpj: {Cnpj}</Text>
+      <TextInput
+      value={Cnpj}
+      defaultValue={Cnpj}
+      
+      style={styles.input}
+      onChangeText={text => SetCnpj(text)}/>
+      <Text style={styles.title}>Nome: {Nome}</Text>
+      <TextInput
+      value={Nome}
+      defaultValue={Nome}
+      
+      style={styles.input}
+      onChangeText={text => SetNome(text)}/>
+      <Text style={styles.title}>Email: {Email}</Text>
+      <TextInput
+      value={Email}
+      defaultValue={Email}
+      
+      style={styles.input}
+      onChangeText={text => SetEmail(text)}/>
+
+      <Text style={styles.title}>Rua: {Rua}</Text>
+      <TextInput
+      value={Rua}
+      defaultValue={Rua}
+      
+      style={styles.input}
+      onChangeText={text => SetRua(text)}/>
+      <Text style={styles.title}>Numero: {Numero}</Text>
+      <TextInput
+      value={Numero}
+      defaultValue={Numero}
+      
+      style={styles.input}
+      onChangeText={text => SetNumero(text)}/>
+      <Text style={styles.title}>Bairro: {Bairro}</Text>
+      <TextInput
+      value={Bairro}
+      defaultValue={Bairro}
+      
+      style={styles.input}
+      onChangeText={text => SetBairro(text)}/>
+      <Text style={styles.title}>Cidade: {Cidade}</Text>
+      <TextInput
+      value={Cidade}
+      defaultValue={Cidade}
+      
+      style={styles.input}
+      onChangeText={text => SetCidade(text)}/>
+      <Text style={styles.title}>Estado: {Estado}</Text>
+      <TextInput
+      value={Estado}
+      defaultValue={Estado}
+      
+      style={styles.input}
+      onChangeText={text => SetEstado(text)}/>
+      <Text style={styles.title}>CEP: {CEP}</Text>
+      <TextInput
+      value={CEP}
+      defaultValue={CEP}
+      
+      style={styles.input}
+      onChangeText={text => SetCEP(text)}/>
+      <Text style={styles.title}>Descricao: {Descricao}</Text>
+      <TextInput
+      value={Descricao}
+      defaultValue={Descricao}
+      multiline
+      style={styles.input}
+      numberOfLines={4}
+      onChangeText={text => SetDescricao(text)}/>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -19,7 +116,7 @@ export default function Inst() {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'#4e0189'
+    //backgroundColor:'#4e0189'
   },
   containerHeader:{
     marginTop:'13%',

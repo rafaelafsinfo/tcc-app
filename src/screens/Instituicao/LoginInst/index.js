@@ -30,6 +30,7 @@ export default function LoginInst() {
           response2.data.dados[0].Numero,
           response2.data.dados[0].Bairro,
           response2.data.dados[0].Cidade,
+          response2.data.dados[0].Estado,
           response2.data.dados[0].CEP,
           response.data.Descricao)      }else{
         setError('email ou senha invalidos')

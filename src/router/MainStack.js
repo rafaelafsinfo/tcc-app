@@ -24,11 +24,6 @@ export default function Routes(){
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name='Inst'
-                    component={Inst}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
                     name='Rastreio'
                     component={Rastreio}
                     options={{headerShown: false}}
