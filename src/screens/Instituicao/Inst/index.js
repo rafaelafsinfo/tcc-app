@@ -23,7 +23,12 @@ export default function Inst() {
   
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+
+      <View style={styles.containerHeader}>
+        <Text style={styles.message}>olá {Nome}</Text>
+      </View>
+
+      <ScrollView style={styles.containerForm}>
 
       <Text style={styles.title}>cnpj:</Text>
       <TextInput
@@ -80,19 +85,13 @@ export default function Inst() {
       value={Estado}
       style={styles.input}
       onChangeText={text => SetEstado(text)}/>
-      <Text style={styles.title}>CEP:</Text>
-      <TextInput
-      value={Cep}
-      style={styles.input}
-      onChangeText={text => SetCEP(text)}
-      />
+      <Text style={styles.title}>CEP: {Cep}</Text>
 
       <Text style={styles.title}>Descricao:</Text>
       <TextInput
       value={Descricao}
-      multiline
-      style={styles.input}
-      numberOfLines={4}
+      multiline={true}
+      style={styles.inputInst}
       onChangeText={text => SetDescricao(text)}/>
       </ScrollView>
     </SafeAreaView>
@@ -102,7 +101,7 @@ export default function Inst() {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    //backgroundColor:'#4e0189'
+    backgroundColor:'#4e0189'
   },
   containerHeader:{
     marginTop:'13%',
@@ -135,6 +134,16 @@ const styles = StyleSheet.create({
     paddingStart:8,
     paddingEnd:8,
     height:40,
+    marginBottom:12,
+    fontSize:16,
+    borderColor:'#cdd1e0'
+  },
+  inputInst:{
+    borderWidth:1,
+    borderRadius:10,
+    paddingStart:8,
+    paddingEnd:8,
+    height:80,
     marginBottom:12,
     fontSize:16,
     borderColor:'#cdd1e0'
