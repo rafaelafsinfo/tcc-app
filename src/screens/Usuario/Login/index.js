@@ -11,7 +11,7 @@ export default function Login() {
   const [senha,setSenha] = useState('')
   const [error,setError] = useState(null)
   const navigation = useNavigation()
-  const { signIn } = useContext(UserContext)
+  const { signInUser } = useContext(UserContext)
 
   const handleSubmit = async () =>{
     try{
@@ -21,13 +21,13 @@ export default function Login() {
       })
       if (response.status){
         const response2 = await api.get(`/Usuario/${email}`)
-        signIn(response.data.id,
+        signInUser(response.data.id,
           response.data.p_nome,
           response.data.sobrenome,
           response.data.email,
           response2.data.dados[0].cidade,
           response2.data.dados[0].estado,
-          response2.data.dados[0].username)
+          response2.data.dados[0].username)  
       }else{
         setError('email ou senha invalidos')
         console.log(error)

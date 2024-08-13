@@ -1,18 +1,11 @@
 import React from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Card from '../../../components/Card';
-import { ScrollView } from 'react-native-web';
 import api from '../../../services/api';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Inst from '../../Instituicao/Inst';
-import InstPage from '../InstPage';
-
-const Tab = createBottomTabNavigator();
-
-function MainContent() {
+export default function MainContent() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -43,16 +36,6 @@ function MainContent() {
         keyExtractor={item => item.Cnpj}
       />
     </SafeAreaView>
-  );
-}
-
-export default function MainPage() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={MainContent}/>
-      <Tab.Screen name="Inst" component={Inst} />
-      <Tab.Screen name="InstPage" component={InstPage} />
-    </Tab.Navigator>
   );
 }
 

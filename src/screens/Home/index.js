@@ -1,15 +1,8 @@
 import React, { useState } from 'react'
-import { 
-  View,
-  Text,
-  StyleSheet ,
-  Image,
-  TouchableOpacity
-} from 'react-native'
+import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
-import { isEnabled } from 'react-native/Libraries/Performance/Systrace'
 
 export default function Home() {
   const[btn1Visible,setbtn1Visible] = useState(false)
@@ -20,19 +13,21 @@ export default function Home() {
     setbtn1Visible(!btn1Visible)
     setbtn2Visible(!btn2Visible)
   }
+
   return (
     <SafeAreaView style={styles.container}>
+
           <TouchableOpacity 
-          style={styles.containerLogo}
-          onPress={handlepress}
+            style={styles.containerLogo}
+            onPress={handlepress}
           >
-              <Animatable.Image
-                animation='flipInY'
-                source={require('../../assets/logo.png')}
-                style={{width:'100%'}}
-                resizeMode='contain'
+          <Animatable.Image
+            animation='flipInY'
+            source={require('../../assets/logo.png')}
+            style={{width:'100%'}}
+            resizeMode='contain'
                 
-                />
+          />
         </TouchableOpacity>
 
         <Animatable.View delay={600} animation='fadeInUp' style={styles.containerForm}>
@@ -51,8 +46,6 @@ export default function Home() {
           onPress={()=> navigation.navigate('Login')}>
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>)}
-
-          
         </Animatable.View>
 
     </SafeAreaView>

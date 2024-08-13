@@ -17,28 +17,7 @@ const navigation = useNavigation()
             cep: cep, 
             descricao: descricao})}>
             <Text style={styles.text}>
-                <Text style={styles.title}>cnpj</Text> : {cnpj}
-            </Text>
-            <Text style={styles.text}>
                 <Text style={styles.title}>nome</Text>: {nome_inst}
-            </Text>
-            <Text style={styles.text}>
-                <Text style={styles.title}>rua</Text>: {rua}
-            </Text>
-            <Text style={styles.text}>
-                <Text style={styles.title}>numero</Text>: {numero}
-            </Text>
-            <Text style={styles.text}>
-                <Text style={styles.title}>bairro</Text>: {bairro}
-            </Text>
-            <Text style={styles.text}>
-                <Text style={styles.title}>cidade</Text>: {cidade}
-            </Text>
-            <Text style={styles.text}>
-                <Text style={styles.title}>estado</Text>: {estado}
-            </Text>
-            <Text style={styles.text}>
-                <Text style={styles.title}>cep</Text>: {cep}
             </Text>
             <Text style={styles.text}>
                 <Text style={styles.title}>descricao</Text>: {descricao}

@@ -5,8 +5,8 @@ import Login from '../screens/Usuario/Login'
 import LoginInst from '../screens/Instituicao/LoginInst'
 import Cadastro from '../screens/Usuario/Cadastro'
 import CadastroInst from '../screens/Instituicao/CadastroInst'
-import Inst from '../screens/Instituicao/Inst'
-import Main from './Tab'
+import TabUser from './RouterUsuario/TabUser'
+import TabInst from './RouterInstituicao/TabInst'
 
 const Stack = createNativeStackNavigator()
 
@@ -34,18 +34,18 @@ export default function(){
             options={{headerShown: false}}
         />
         <Stack.Screen
-                    name='Inst'
-                    component={Inst}
-                    options={{headerShown: false}}
-        />
-        <Stack.Screen
             name='CadastroInst'
             component={CadastroInst}
             options={{headerShown: false}}
         />
         <Stack.Screen
-            name='Main'
-            component={Main}
+            name='TabUser'
+            component={TabUser}
+            options={{headerShown: false}}
+        />
+        <Stack.Screen
+            name='TabInst'
+            component={TabInst}
             options={{headerShown: false}}
         />
     </Stack.Navigator>

@@ -17,7 +17,7 @@ function AuthProvider({ children }){
             estado: estado,
             username: username
         })
-        navigation.navigate('Main')
+        navigation.navigate('TabUser')
     }
     function signInInst (Cnpj, NomeInst, Email, Rua, Numero, Bairro, Cidade,Estado,CEP,Descricao){
         setUser({
@@ -32,7 +32,7 @@ function AuthProvider({ children }){
             CEP: CEP,
             Descricao: Descricao
         })
-        navigation.navigate('Inst')
+        navigation.navigate('TabInst')
     }
      return(
         <UserContext.Provider value={{signInUser,signInInst, user}}>

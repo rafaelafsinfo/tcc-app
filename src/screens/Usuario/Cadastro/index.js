@@ -3,7 +3,6 @@ import api from '../../../services/api'
 import { View,Text,StyleSheet,TextInput,TouchableOpacity, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
-import { useNavigation } from '@react-navigation/native'
 import { UserContext } from '../../../contexts/UserContext'
 
 
@@ -18,7 +17,6 @@ export default function CadastroInst() {
   const [error,setError] = useState(null)
   const { signIn } = useContext(UserContext)
 
-  const navigation = useNavigation()
   const handleSubmit = async () =>{
     try{
       const response = await api.post('/Usuario',{
