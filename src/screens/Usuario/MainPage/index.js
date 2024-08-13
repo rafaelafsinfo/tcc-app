@@ -7,7 +7,6 @@ import { ScrollView } from 'react-native-web';
 import api from '../../../services/api';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Inst from '../../Instituicao/Inst';
 import InstPage from '../InstPage';
 
 const Tab = createBottomTabNavigator();
@@ -50,7 +49,6 @@ export default function MainPage() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={MainContent}/>
-      <Tab.Screen name="Inst" component={Inst} />
       <Tab.Screen name="InstPage" component={InstPage} />
     </Tab.Navigator>
   );

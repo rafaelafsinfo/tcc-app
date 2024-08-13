@@ -7,6 +7,8 @@ import Cadastro from '../screens/Usuario/Cadastro'
 import CadastroInst from '../screens/Instituicao/CadastroInst'
 import Inst from '../screens/Instituicao/Inst'
 import Main from './Tab'
+import Rastreio from '../screens/Rastreio'
+import ListDoacoes from '../screens/Instituicao/ListDoacoes'
 
 const Stack = createNativeStackNavigator()
 
@@ -36,6 +38,16 @@ export default function(){
         <Stack.Screen
                     name='Inst'
                     component={Inst}
+                    options={{headerShown: false}}
+        />
+        <Stack.Screen
+                    name='Rastreio'
+                    component={Rastreio}
+                    options={{headerShown: false}}
+        />
+        <Stack.Screen
+                    name='ListDoacoes'
+                    component={ListDoacoes}
                     options={{headerShown: false}}
         />
         <Stack.Screen

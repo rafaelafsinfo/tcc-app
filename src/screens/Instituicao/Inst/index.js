@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View,FlatList, ScrollView, TextInput } from 'react-native'
+import { StyleSheet, Text, View,FlatList,TouchableOpacity, ScrollView, TextInput } from 'react-native'
 import React,{ useState,useEffect,useContext } from 'react'
 import api from '../../../services/api';
 import { useNavigation } from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-web';
 import { UserContext } from '../../../contexts/UserContext';
 
 export default function Inst() {
+  const navigation = useNavigation()
   const { user } = useContext(UserContext)
   const [Cnpj,SetCnpj] = useState(user.Cnpj)
   const [Nome,SetNome] = useState(user.NomeInst)
@@ -93,6 +93,16 @@ export default function Inst() {
       multiline={true}
       style={styles.inputInst}
       onChangeText={text => SetDescricao(text)}/>
+
+      <TouchableOpacity
+      style={styles.button}>
+        <Text style={styles.buttonText}>update</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+      style={styles.button}
+      onPress={() => navigation.navigate('ListDoacoes')}>
+        <Text style={styles.buttonText}>rastreio</Text>
+      </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   )
@@ -155,7 +165,8 @@ const styles = StyleSheet.create({
     paddingVertical:8,
     marginTop:14,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    marginBottom:10
   },
   buttonText:{
     color:'#fff',

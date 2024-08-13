@@ -9,19 +9,20 @@ import { UserContext } from '../../../contexts/UserContext'
 
 
 export default function LoginInst() {
-  const [email,setEmail] = useState('')
-  const [senha,setSenha] = useState('')
+  const [Email,setEmail] = useState('')
+  const [Senha,setSenha] = useState('')
   const [error,setError] = useState(null)
   const navigation = useNavigation()
   const {signInInst} = useContext(UserContext)
   const handleSubmit = async () =>{
     try{
       const response = await api.post('/Login/Instituicao',{
-        Email: email,
-        Senha: senha,
+        Email,
+        Senha,
       })
       if (response.status == 200){
-        const response2 = await api.get(`/Instituicao/${email}`)
+        const response2 = await api.get(`/Instituicao/${Email}`)
+        console.log(response.data) 
         signInInst(
           response.data.Cnpj,
           response.data.NomeInst,
@@ -33,7 +34,7 @@ export default function LoginInst() {
           response2.data.dados[0].Estado,
           response2.data.dados[0].CEP,
           response.data.Descricao)      }else{
-        setError('email ou senha invalidos')
+        setError('Email ou Senha invalidos')
         console.log(error)
       }
     }catch(error){
@@ -51,18 +52,18 @@ export default function LoginInst() {
       <Animatable.View animation='fadeInUp' delay={600} style={styles.containerForm}>
         <Text style={styles.title}>E-mail</Text>
         <TextInput
-          value={email}
+          value={Email}
           style={styles.input}
           placeholder='Digite seu E-mail'
-          keyboardType='email-address'
+          keyboardType='Email-address'
           autoCapitalize='none'
-          autoComplete='email'
+          autoComplete='Email'
           
           onChangeText={text => setEmail(text)}
           />
         <Text style={styles.title}>Senha</Text>
         <TextInput
-          value={senha}
+          value={Senha}
           style={styles.input}
           placeholder='Digite sua Senha'
           autoCapitalize='none'
