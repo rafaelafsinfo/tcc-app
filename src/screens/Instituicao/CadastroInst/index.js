@@ -165,7 +165,7 @@ export default function CadastroInst() {
             
             onChangeText={text => setNumero(text)}
             />
-          <Text style={styles.title}>Numero</Text>
+          <Text style={styles.title}>Descrição</Text>
           <TextInput
             value={descricao}
             style={styles.input}
