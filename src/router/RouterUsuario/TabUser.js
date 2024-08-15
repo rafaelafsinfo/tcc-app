@@ -3,6 +3,7 @@ import { Feather } from '@expo/vector-icons'
 
 import MainUser from './MainStackUser'
 import Profile from '../../screens/Usuario/Perfil'
+import Consulta from '../../screens/Usuario/Consulta'
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,13 @@ export default function TabRoutes(){
         component={Profile} 
         options={{
             tabBarIcon: ({ size }) => <Feather name="user" size={ size }/>
+        }}
+      />
+      <Tab.Screen 
+        name="Consulta" 
+        component={Consulta} 
+        options={{
+            tabBarIcon: ({ size }) => <Feather name="align-justify" size={ size }/>
         }}
       />
     </Tab.Navigator>
