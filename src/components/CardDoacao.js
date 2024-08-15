@@ -7,6 +7,7 @@ export default function CardDoacao({id,produto,data_doacao,trajetoria}) {
   const navigation = useNavigation()
   return (
     <TouchableOpacity
+    style={styles.card}
     onPress={() => navigation.navigate('Rastreio', {
       id:id, 
       produto: produto,
@@ -28,4 +29,24 @@ export default function CardDoacao({id,produto,data_doacao,trajetoria}) {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  card:{
+    padding:'2.5%',
+    borderRadius:25,
+    borderColor:'#000',
+    backgroundColor:'#4e0189',
+    marginVertical:8,
+    marginHorizontal:16,
+    
+},
+title:{
+    fontSize:16,
+    color:'#fff',
+    fontWeight:'bold',
+    marginTop:28,
+    marginBottom:12,
+},
+text:{
+    color:'#fff'
+}
+})
