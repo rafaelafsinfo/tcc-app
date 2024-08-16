@@ -1,10 +1,6 @@
-import { StyleSheet, Text, View,FlatList, ScrollView, TextInput } from 'react-native'
-import React,{ useState,useEffect,useContext } from 'react'
-import api from '../../../services/api';
-import { useNavigation } from '@react-navigation/native';
-import {useRoute} from '@react-navigation/native'
+import { StyleSheet, Text, View,ScrollView, TextInput } from 'react-native'
+import React,{ useState,useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-web';
 import { UserContext } from '../../../contexts/UserContext';
 
 export default function Inst() {
