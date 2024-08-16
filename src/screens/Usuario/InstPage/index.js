@@ -37,7 +37,6 @@ export default function InstPage() {
     setIdUsuario(user.id)
     setIdinstituicao(cnpj)
   },[])
-  console.log(formattedDate)
   const handleSubmit = async () =>{
     try{
       const response = await api.post('/Doacoes',{

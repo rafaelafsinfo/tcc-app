@@ -1,17 +1,20 @@
-import { StyleSheet, Text, View,FlatList } from 'react-native'
-import React,{useState,useEffect} from 'react'
+import React,{ useState,useEffect, useContext } from 'react'
+import { StyleSheet, FlatList } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import CardDoacao from '../../../components/CardDoacao'
+import CardDoacao from '../../../components/CardDoacoesUsuario'
 import api from '../../../services/api'
+import { UserContext } from '../../../contexts/UserContext'
 
 export default function ListDoacoes() {
+
+  const { user } = useContext(UserContext)
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    api.get('/Doacoes')
-      .then(response => {
-        setData(response.data.dados);
-      });
+    api.get(`/Doacoes/User/${user.id}`)
+    .then(response => {
+      setData(response.data.dados)
+    });
   }, []);
   return (
     <SafeAreaView>
@@ -21,9 +24,11 @@ export default function ListDoacoes() {
         renderItem={({ item }) => (
           <CardDoacao
             id = {item.id}
+            NomeInst = {item.NomeInst}
+            data_doacao = {item.data_doacao}
             produto = {item.produto}
-            data_doacao = {item.data_data}
             trajetoria = {item.trajetoria}
+            
           />
         )}
         keyExtractor={item => item.id}

@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity,Text,StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 export default function({cnpj,nome_inst,rua,numero,bairro,cidade,estado,cep,descricao}){
 const navigation = useNavigation()
     return(
