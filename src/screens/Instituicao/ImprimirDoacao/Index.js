@@ -4,6 +4,7 @@ import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { UserContext } from '../../../contexts/UserContext';
+import QRCode from 'react-native-qrcode-svg';
 
 
 export default function ImprimirDoacao() {
