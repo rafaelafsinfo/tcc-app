@@ -16,6 +16,20 @@ export default function OpcoesUsuario(){
     const [cidade, Setcidade] = useState('')
     const [estado, Setestado] = useState('')
 
+    const Submit = async () =>{
+        try{
+
+            const response = await api.post('/Login/Usuario',{
+                email,
+                senha,
+              })
+
+        }catch(error){
+            setError('erro ao logar')
+            console.log(error)
+        }
+    }
+
     return(
         <SafeAreaView style={styles.maincontainer}>
 
@@ -87,7 +101,8 @@ export default function OpcoesUsuario(){
                     onChangeText={text => Setestado(text)}
                 />
                 
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={Submit}>
                     <Text 
                     style={styles.botaosubmeter}>
                         Submeter
