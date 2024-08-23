@@ -1,7 +1,7 @@
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
 
 import MainInst from '../../screens/Instituicao/Inst'
-import Rastreio from '../../screens/Rastreio'
+import ImprimirDoacao from '../../screens/Instituicao/ImprimirDoacao/Index'
 
 const Stack = createNativeStackNavigator()
 
@@ -16,8 +16,8 @@ export default function Routes(){
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name='Rastreio'
-                    component={Rastreio}
+                    name='ImprimirDoacao'
+                    component={ImprimirDoacao}
                     options={{headerShown: false}}
                 />
             

@@ -3,7 +3,7 @@ import { Feather } from '@expo/vector-icons'
 
 import MainInst from './MainStackInst'
 import ListDoacoes from '../../screens/Instituicao/ListDoacoes';
-import ImprimirDoacao from '../../screens/Instituicao/ImprimirDoacao/Index';
+import Rastreio from '../../screens/Rastreio';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,8 +29,8 @@ export default function TabRoutes(){
         }}
       />
       <Tab.Screen 
-        name="ImprimirDoacao" 
-        component={ImprimirDoacao}
+        name="Rastreio" 
+        component={Rastreio}
         options={{
             tabBarIcon: ({ size }) => <Feather name="save" size={ size }/>
         }}
