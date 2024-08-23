@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
     marginBottom:12,
   },
   text:{
-    color:'#cfc1e0'
+    color:'#cfc1e0',
+    paddingBottom: 20
   },
   button:{
     position:'relative',
