@@ -1626,6 +1626,11 @@
   dependencies:
     nanoid "^3.1.23"
 
+"@remix-run/router@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.19.1.tgz#984771bfd1de2715f42394c87fb716c1349e014f"
+  integrity sha512-S45oynt/WH19bHbIXjtli6QmwNYvaz+vtnubvNpNDvUOoA/OWh6j1OikIP3G+v5GHdxyC6EXoChG3HgYGEUfcg==
+
 "@rnx-kit/chromium-edge-launcher@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@rnx-kit/chromium-edge-launcher/-/chromium-edge-launcher-1.0.0.tgz"
@@ -1727,14 +1732,7 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.12.tgz"
   integrity sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==
 
-"@types/react-native@^0.73.0":
-  version "0.73.0"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.73.0.tgz#b316be230745779814caa533360262140b0f5984"
-  integrity sha512-6ZRPQrYM72qYKGWidEttRe6M5DZBEV5F+MHMHqd4TTYx0tfkcdrUFGdef6CCxY0jXU7wldvd/zA/b0A/kTeJmA==
-  dependencies:
-    react-native "*"
-
-"@types/react@~18.2.79":
+"@types/react@^18.2.6", "@types/react@~18.2.79":
   version "18.2.79"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.79.tgz"
   integrity sha512-RwGAGXPl9kSXwdNTafkOEuFrTBD5SA2B3iEB96xi8+xu5ddUa/cpvyVCSNn+asgLCTHkb5ZxN8gbuibYJi4s1w==
@@ -1766,7 +1764,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@urql/core@2.3.6", "@urql/core@>=2.3.1":
+"@urql/core@>=2.3.1", "@urql/core@2.3.6":
   version "2.3.6"
   resolved "https://registry.npmjs.org/@urql/core/-/core-2.3.6.tgz"
   integrity sha512-PUxhtBh7/8167HJK6WqBv6Z0piuiaZHQGYbhwpNL9aIQmLROPEdaUYkY4wh45wPQXcTpnd11l0q3Pw+TI11pdw==
@@ -2068,6 +2066,11 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+  integrity sha512-Y5gU45svrR5tI2Vt/X9GPd3L0HNIKzGu202EjxrXMpuc2V2CiKgemAbUUsqYmZJvPtCXoUKjNZwBJzsNScUbXA==
 
 base64-js@^1.2.3, base64-js@^1.3.1, base64-js@^1.5.1:
   version "1.5.1"
@@ -3150,6 +3153,7 @@ expo@~51.0.31:
   version "51.0.31"
   resolved "https://registry.npmjs.org/expo/-/expo-51.0.31.tgz"
   integrity sha512-YiUNcxzSkQ0jlKW+e8F81KnZfAhCugEZI9VYmuIsFONHivtiYIADHdcFvUWnexUEdgPQDkgWw85XBnIbzIZ39Q==
+
   dependencies:
     "@babel/runtime" "^7.20.0"
     "@expo/cli" "0.18.29"
@@ -5485,6 +5489,14 @@ react-native-animatable@^1.4.0:
   dependencies:
     prop-types "^15.8.1"
 
+react-native-fs@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.20.0.tgz#05a9362b473bfc0910772c0acbb73a78dbc810f6"
+  integrity sha512-VkTBzs7fIDUiy/XajOSNk0XazFE9l+QlMAce7lGuebZcag5CnjszB+u4BdqzwaQOdcYb5wsJIsqq4kxInIRpJQ==
+  dependencies:
+    base-64 "^0.1.0"
+    utf8 "^3.0.0"
+
 react-native-qr-svg@^1.3.2:
   version "1.3.2"
   resolved "https://registry.npmjs.org/react-native-qr-svg/-/react-native-qr-svg-1.3.2.tgz"
@@ -5549,7 +5561,7 @@ react-native-web@~0.19.6:
     postcss-value-parser "^4.2.0"
     styleq "^0.1.3"
 
-react-native@*, react-native@^0.74.5:
+react-native@*, react-native@^0.74.5, react-native@>=0.63.4:
   version "0.74.5"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.74.5.tgz"
   integrity sha512-Bgg2WvxaGODukJMTZFTZBNMKVaROHLwSb8VAGEdrlvKwfb1hHg/3aXTUICYk7dwgAnb+INbGMwnF8yeAgIUmqw==
@@ -5596,6 +5608,21 @@ react-refresh@^0.14.0, react-refresh@^0.14.2:
   version "0.14.2"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.14.2.tgz"
   integrity sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==
+
+react-router-native@^6.26.1:
+  version "6.26.1"
+  resolved "https://registry.yarnpkg.com/react-router-native/-/react-router-native-6.26.1.tgz#5a353249d2e9c44c5c7e270e8423ec421e90d3f1"
+  integrity sha512-rOjPNtjOxEWE0GqY3kGQyva1IaW2cBhSji9Gx7sf91KWH1Qjlr9x8A+eNqUp1rctjRr/ugM+3nCelwWg7wRvzA==
+  dependencies:
+    "@ungap/url-search-params" "^0.2.2"
+    react-router "6.26.1"
+
+react-router@6.26.1:
+  version "6.26.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.26.1.tgz#88c64837e05ffab6899a49df2a1484a22471e4ce"
+  integrity sha512-kIwJveZNwp7teQRI5QmwWo39A5bXRyqpH0COKKmPnyD2vBvDwgFXSqDUYtt1h+FEyfnE8eXr7oe0MxRzVwCcvQ==
+  dependencies:
+    "@remix-run/router" "1.19.1"
 
 react-shallow-renderer@^16.15.0:
   version "16.15.0"
@@ -6659,6 +6686,11 @@ use-latest-callback@^0.1.9:
   version "0.1.9"
   resolved "https://registry.npmjs.org/use-latest-callback/-/use-latest-callback-0.1.9.tgz"
   integrity sha512-CL/29uS74AwreI/f2oz2hLTW7ZqVeV5+gxFeGudzQrgkCytrHw33G4KbnQOrRlAEzzAFXi7dDLMC9zhWcVpzmw==
+
+utf8@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
+  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"

@@ -1,7 +1,8 @@
 import { Camera, useCameraPermissions,CameraView } from "expo-camera"
 import { useState,useEffect } from "react"
 import { Alert, Button, StyleSheet,Text, View } from "react-native"
-import { useCameraPermission } from "react-native-vision-camera"
+import api from "../../services/api";
+import { useNavigation } from "@react-navigation/native";
 
 type Prop = {
     type: string;
@@ -11,6 +12,7 @@ type Prop = {
 export default function Rastreio() {
     const [permission,requestPermission] = useCameraPermissions();
     const [scanned,setScanned] = useState(false);
+    const navigation = useNavigation()
 
     useEffect(()=>{
         (async()=>{
@@ -22,19 +24,28 @@ export default function Rastreio() {
         })()
     },[])
 
-    const  handleBarCodeScanned = ({ type, data }: Prop) => {
+    const  handleBarCodeScanned = async ({ type, data }: Prop) => {
         setScanned(true);
-        Alert.alert(
-          `Código ${type} Scaneado`, 
-          `Dados: ${data}`,      
-          [
-            {
-              text: 'OK',      
-              onPress: () => setScanned(false),  
-            }
-          ],
-          { cancelable: false } 
-        );
+        const response = await api.put('/Doacoes/trajetoria',{
+          id:data
+        })
+        try{
+          Alert.alert(
+            `Código ${type} Scaneado com sucesso`, 
+            `Dados: ${response.data.msg}`,      
+            [
+              {
+                text: 'OK',      
+                onPress: () => setScanned(false),  
+              }
+            ],
+            { cancelable: false } 
+          );
+          navigation.goBack()
+        }catch(error){
+          console.log(error)
+        }
+       
     };
 
     if (!permission?.granted) {
