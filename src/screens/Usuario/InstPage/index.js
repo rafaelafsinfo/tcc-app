@@ -32,6 +32,7 @@ export default function InstPage() {
 
   const today = new Date()
   const formattedDate = formatDate(today,'mm-dd-aaaa')
+  console.log(formattedDate)
   useEffect(() => {
     setData(formattedDate)
     setIdUsuario(user.id)
@@ -121,8 +122,6 @@ export default function InstPage() {
                 style={styles.input}
                 placeholder='Digite o produto a ser doado'
                 keyboardType='default'
-                autoCapitalize='none'
-                autoComplete='email'
                 
                 onChangeText={text => setProduto(text)}
                 />

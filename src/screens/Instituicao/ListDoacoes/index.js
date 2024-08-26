@@ -30,7 +30,7 @@ export default function ListDoacoes() {
         setData(response.data.dados);
       });
   }, []);
-  return (
+  return ( 
     <SafeAreaView>
       <FlatList
         style={styles.cards}
