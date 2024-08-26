@@ -92,6 +92,8 @@ const styles = StyleSheet.create({
       camera: {
         flex: 1,
         justifyContent: 'flex-end',
+        borderRadius: 15,
+        
       },
       layerContainer: {
         flex: 1,
@@ -112,6 +114,7 @@ const styles = StyleSheet.create({
         height: 200,
         borderWidth: 2,
         borderColor: '#00FF00',
+        
       },
       layerRight: {
         flex: 1,

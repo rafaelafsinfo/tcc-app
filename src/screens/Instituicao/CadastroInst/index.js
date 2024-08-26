@@ -1,49 +1,61 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import api from '../../../services/api'
 import { View,Text,StyleSheet,TextInput,TouchableOpacity, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
-
+import { UserContext } from '../../../contexts/UserContext'
 
 
 export default function CadastroInst() {
-  const [cnpj,setCnpj] = useState('')
-  const [nome_inst,setNome] = useState('')
-  const [email,setEmail] = useState('')
-  const [senha,setSenha] = useState('')
-  const [rua,setRua] = useState('')
-  const [numero,setNumero] = useState('')
-  const [bairro,setBairro] = useState('')
-  const [cidade,setCidade] = useState('')
-  const [estado,setEstado] = useState('')
+  const {signInInst} = useContext(UserContext)
+  const [Cnpj,setCnpj] = useState('')
+  const [NomeInst,setNome] = useState('')
+  const [Email,setEmail] = useState('')
+  const [Senha,setSenha] = useState('')
+  const [Rua,setRua] = useState('')
+  const [Numero,setNumero] = useState('')
+  const [Bairro,setBairro] = useState('')
+  const [Cidade,setCidade] = useState('')
+  const [Estado,setEstado] = useState('')
   const [CEP,setCEP] = useState('')
-  const [descricao,setDescricao] = useState('')
+  const [Descricao,setDescricao] = useState('')
   const [error,setError] = useState(null)
   const navigation = useNavigation()
   const handleSubmit = async () =>{
     try{
       const response = await api.post('/Instituicao',{
-        cnpj,
-        nome_inst,
-        email,
-        senha,
-        rua,
-        numero,
-        bairro,
-        cidade,
-        estado,
+        Cnpj,
+        NomeInst,
+        Email,
+        Senha,
+        Rua,
+        Numero,
+        Bairro,
+        Cidade,
+        Estado,
         CEP,
-        descricao,
+        Descricao,
       })
       if (response.status){
-        navigation.navigate('Main')
+        signInInst(
+          response.data.dados[0].Cnpj,
+          response.data.dados[0].NomeInst,
+          response.data.dados[0].Email,
+          response.data.dados[0].Rua,
+          response.data.dados[0].Numero,
+          response.data.dados[0].Bairro,
+          response.data.dados[0].Cidade,
+          response.data.dados[0].Estado,
+          response.data.dados[0].CEP,
+          response.data.dados[0].Descricao)  
+        navigation.navigate('Inst')
       }else{
         setError('email ou senha invalidos')
         console.log(error)
       }
     }catch(error){
-      setError('erro ao cadastrar')
+      setError(error)
       console.log(error)
     }
   }
@@ -70,7 +82,7 @@ export default function CadastroInst() {
         <ScrollView>
           <Text style={styles.title}>Cnpj</Text>
           <TextInput
-            value={cnpj}
+            value={Cnpj}
             style={styles.input}
             placeholder='informe o cnpj da instituição'
             autoCapitalize='words'
@@ -78,9 +90,9 @@ export default function CadastroInst() {
                         
             onChangeText={handleCnpjChange}
             />
-          <Text style={styles.title}>nome_inst</Text>
+          <Text style={styles.title}>Razao Social</Text>
           <TextInput
-            value={nome_inst}
+            value={NomeInst}
             style={styles.input}
             placeholder='Digite seu nome_inst'
             autoCapitalize='words'
@@ -90,7 +102,7 @@ export default function CadastroInst() {
             />
           <Text style={styles.title}>E-mail</Text>
           <TextInput
-            value={email}
+            value={Email}
             style={styles.input}
             placeholder='Digite seu E-mail'
             keyboardType='email-address'
@@ -101,7 +113,7 @@ export default function CadastroInst() {
             />
           <Text style={styles.title}>Senha</Text>
           <TextInput
-            value={senha}
+            value={Senha}
             style={styles.input}
             placeholder='Digite sua Senha'
             autoCapitalize='none'
@@ -121,7 +133,7 @@ export default function CadastroInst() {
             />
           <Text style={styles.title}>Estado</Text>
           <TextInput
-            value={estado}
+            value={Estado}
             style={styles.input}
             placeholder='Digite o Estado'
             autoCapitalize='none'
@@ -129,7 +141,7 @@ export default function CadastroInst() {
           />
           <Text style={styles.title}>Cidade</Text>
           <TextInput
-            value={cidade}
+            value={Cidade}
             style={styles.input}
             placeholder='Digite a Cidade'
             autoCapitalize='none'
@@ -138,7 +150,7 @@ export default function CadastroInst() {
           />
           <Text style={styles.title}>Bairro</Text>
           <TextInput
-            value={bairro}
+            value={Bairro}
             style={styles.input}
             placeholder='Digite o bairro'
             autoCapitalize='none'
@@ -147,7 +159,7 @@ export default function CadastroInst() {
           />
           <Text style={styles.title}>rua</Text>
           <TextInput
-            value={rua}
+            value={Rua}
             style={styles.input}
             placeholder='Digite a Rua'
             autoCapitalize='none'
@@ -157,7 +169,7 @@ export default function CadastroInst() {
             />
           <Text style={styles.title}>Numero</Text>
           <TextInput
-            value={numero}
+            value={Numero}
             style={styles.input}
             placeholder='Digite a numero da sede ex:300/301'
             autoCapitalize='none'
@@ -165,10 +177,11 @@ export default function CadastroInst() {
             
             onChangeText={text => setNumero(text)}
             />
-          <Text style={styles.title}>Numero</Text>
+          <Text style={styles.title}>Descrição</Text>
           <TextInput
-            value={descricao}
-            style={styles.input}
+            value={Descricao}
+            style={styles.inputdesc}
+            multiline
             placeholder='descreva a instituicao'
             autoCapitalize='none'
             autoComplete='street-address'
@@ -223,6 +236,16 @@ const styles = StyleSheet.create({
     paddingStart:8,
     paddingEnd:8,
     height:40,
+    marginBottom:12,
+    fontSize:16,
+    borderColor:'#cdd1e0'
+  },
+  inputdesc:{
+    borderWidth:1,
+    borderRadius:10,
+    paddingStart:8,
+    paddingEnd:8,
+    height:80,
     marginBottom:12,
     fontSize:16,
     borderColor:'#cdd1e0'
