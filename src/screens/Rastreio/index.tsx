@@ -12,6 +12,8 @@ type Prop = {
 export default function Rastreio() {
     const [permission,requestPermission] = useCameraPermissions();
     const [scanned,setScanned] = useState(false);
+    const navigation = useNavigation()
+
     useEffect(()=>{
         (async()=>{
             const {status} = await Camera.requestCameraPermissionsAsync()
@@ -39,7 +41,7 @@ export default function Rastreio() {
             ],
             { cancelable: false } 
           );
-          
+          navigation.goBack()
         }catch(error){
           console.log(error)
         }
