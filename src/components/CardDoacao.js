@@ -7,11 +7,8 @@ export default function CardDoacao({id,produto,data_doacao,trajetoria}) {
   return (
     <TouchableOpacity
     style={styles.card}
-    onPress={() => navigation.navigate('Rastreio', {
-      id:id, 
-      produto: produto,
-      data_doacao: data_doacao, 
-      trajetoria: trajetoria})}>
+    onPress={() => navigation.navigate('ImprimirDoacao', {
+      id:id})}>
         <Text style={styles.text}>
                 <Text style={styles.title}>id</Text> : {id}
             </Text>

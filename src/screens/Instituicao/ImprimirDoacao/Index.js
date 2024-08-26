@@ -3,12 +3,16 @@ import { View, StyleSheet, Button, Platform, Text } from 'react-native';
 import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { UserContext } from '../../../contexts/UserContext';
+import QRCode from 'react-native-qrcode-svg';
+import { useRoute } from '@react-navigation/native';
 
 
 export default function ImprimirDoacao() {
-    const { user } = useContext(UserContext)
+  const route = useRoute()
     const [selectedPrinter, setSelectedPrinter] = useState();
+    const {id} = route.params
+    const [data,setData] = useState(id)
+    const qrCodeSvg = <QRCode value={data} size={200} />
     const html = `
 <!DOCTYPE html>
 <html>
@@ -24,20 +28,10 @@ export default function ImprimirDoacao() {
   </style>
 </head>
 <body>
-  <h1>QR Code Fixo</h1>
-  <div id="qrcode"></div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script>
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: "https://example.com", // conteúdo fixo
-      width: 200,
-      height: 200,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  </script>
+  
+  <div id="qrcode">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=${data}&amp;size=100x100" alt=""/>
+  </div>
 </body>
 </html>
 `
