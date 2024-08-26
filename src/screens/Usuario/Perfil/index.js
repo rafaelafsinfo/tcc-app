@@ -20,7 +20,7 @@ export default function OpcoesUsuario(){
 
     const Submit = async () =>{
         try{
-
+            
             const response = await api.put('/Usuario',{
                 id,
                 p_nome,

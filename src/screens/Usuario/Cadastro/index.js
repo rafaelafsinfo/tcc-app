@@ -15,7 +15,7 @@ export default function CadastroInst() {
   const [cidade,setCidade] = useState('')
   const [estado,setEstado] = useState('')
   const [error,setError] = useState(null)
-  const { signIn } = useContext(UserContext)
+  const { signInUser } = useContext(UserContext)
 
   const handleSubmit = async () =>{
     try{
@@ -26,18 +26,24 @@ export default function CadastroInst() {
         email,
         senha,
         cidade,
-        estado,
+        estado
+      })
+      const responselogin = await api.post('Login/Usuario',{
+        email,
+        senha
       })
 
-      const responseforlogin = await api.post('/Login/Usuario',{
-        email,
-        senha,
-      })
-      
-      if (responseforlogin.status){
-        console.log(responseforlogin.data.id)
-        signIn(responseforlogin.data.id, responseforlogin.data.p_nome, responseforlogin.data.sobrenome, responseforlogin.data.email)
-      }else{
+      if (response.status){
+
+        signInUser(responselogin.data.id, 
+                  responselogin.data.p_nome, 
+                  responselogin.data.sobrenome, 
+                  responselogin.data.email, 
+                  response.data.dados.cidade, 
+                  response.data.dados.estado, 
+                  response.data.dados.username
+                )      
+        }else{
         setError('email ou senha invalidos')
         console.log(error)
       }
