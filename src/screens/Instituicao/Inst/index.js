@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, ScrollView, TextInput,TouchableOpacity } from "
 import React, { useState, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { UserContext } from "../../../contexts/UserContext";
-import { json } from "react-router-native";
 import api from "../../../services/api";
 
 export default function Inst() {
