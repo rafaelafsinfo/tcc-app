@@ -10,11 +10,32 @@ export default function OpcoesUsuario(){
 
     const navigation = useNavigation()
     const { user } = useContext(UserContext)
-    const [p_nome, Setp_nome] = useState('')
-    const [sobrenome, Setsobrenome] = useState('')
-    const [username, Setusername] = useState('')
-    const [cidade, Setcidade] = useState('')
-    const [estado, Setestado] = useState('')
+    const [id, Set_id] = useState(user.id)
+    const [p_nome, Setp_nome] = useState(user.p_nome)
+    const [sobrenome, Setsobrenome] = useState(user.sobrenome)
+    const [username, Setusername] = useState(user.username)
+    const [cidade, Setcidade] = useState(user.cidade)
+    const [estado, Setestado] = useState(user.estado)
+    const [error, setError] = useState('')
+
+    const Submit = async () =>{
+        try{
+
+            const response = await api.patch('/Usuario',{
+                id,
+                p_nome,
+                sobrenome,
+                username,
+                cidade,
+                estado
+            })
+            console.log(response)
+
+        }catch(error){
+            setError('erro ao logar')
+            console.log(error)
+        }
+    }
 
     return(
         <SafeAreaView style={styles.maincontainer}>
@@ -34,60 +55,43 @@ export default function OpcoesUsuario(){
                 
                 <Text style={styles.entradas}>Primeiro nome:</Text>
                 <TextInput
-                    value={user.p_nome}
                     style={styles.input}
-                    placeholder= 'nome'
+                    placeholder= {user.p_nome
+                    }
                     autoCapitalize='none'
-                    autoComplete='nome'
                     onChangeText={text => Setp_nome(text)}
                 />
                 <Text style={styles.entradas}>Sobrenome:</Text>
                 <TextInput
-                    value={user.sobrenome}
                     style={styles.input}
-                    placeholder= 'sobrenome'
+                    placeholder= {user.sobrenome}
                     autoCapitalize='none'
-                    autoComplete='nome'
                     onChangeText={text => Setsobrenome(text)}
                 />
                 <Text style={styles.entradas}>Username:</Text>
                 <TextInput
-                    value={user.username}
                     style={styles.input}
-                    placeholder= 'username'
+                    placeholder= {user.username}
                     autoCapitalize='none'
-                    autoComplete='nome'
                     onChangeText={text => Setusername(text)}
-                />
-                <Text style={styles.entradas}>Email:</Text>
-                <TextInput
-                    value={user.email}
-                    style={styles.input}
-                    placeholder= 'email'
-                    autoCapitalize='none'
-                    autoComplete='nome'
-                    onChangeText={text => Setemail(text)}
                 />
                 <Text style={styles.entradas}>Cidade:</Text>
                 <TextInput
-                    value={user.cidade}
                     style={styles.input}
-                    placeholder= 'cidade'
+                    placeholder= {user.cidade}
                     autoCapitalize='none'
-                    autoComplete='nome'
                     onChangeText={text => Setcidade(text)}
                 />
                 <Text style={styles.entradas}>Estado:</Text>
                 <TextInput
-                    value={user.estado}
                     style={styles.input}
-                    placeholder= 'estado'
+                    placeholder= {user.estado}
                     autoCapitalize='none'
-                    autoComplete='nome'
                     onChangeText={text => Setestado(text)}
                 />
                 
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={Submit}>
                     <Text 
                     style={styles.botaosubmeter}>
                         Submeter
