@@ -16,6 +16,7 @@ export default function ListDoacoes() {
       setData(response.data.dados)
     });
   }, []);
+
   return (
     <SafeAreaView>
       <FlatList
@@ -23,7 +24,6 @@ export default function ListDoacoes() {
         data={data}
         renderItem={({ item }) => (
           <CardDoacao
-            id = {item.id}
             NomeInst = {item.NomeInst}
             data_doacao = {item.data_doacao}
             produto = {item.produto}

@@ -3,12 +3,15 @@ import { View, StyleSheet, Button, Platform, Text } from 'react-native';
 import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { UserContext } from '../../../contexts/UserContext';
+import QRCode from 'react-native-qrcode-svg';
+import { useRoute } from '@react-navigation/native';
 
 
 export default function ImprimirDoacao() {
-    const { user } = useContext(UserContext)
+  const route = useRoute()
     const [selectedPrinter, setSelectedPrinter] = useState();
+    const {id} = route.params
+    const [data,setData] = useState(id)
     const html = `
 <!DOCTYPE html>
 <html>
@@ -16,28 +19,15 @@ export default function ImprimirDoacao() {
   <title>QR Code Fixo</title>
   <style>
     #qrcode {
-      width: 200px;
-      height: 200px;
-      margin: 20px;
-      border: 1px solid #ccc;
+      alignItems: 'center',
     }
   </style>
 </head>
 <body>
-  <h1>QR Code Fixo</h1>
-  <div id="qrcode"></div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script>
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: "https://example.com", // conteúdo fixo
-      width: 200,
-      height: 200,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  </script>
+  
+  <div id="qrcode">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=${data}&amp;size=100x100" alt=""/>
+  </div>
 </body>
 </html>
 `
@@ -65,13 +55,28 @@ export default function ImprimirDoacao() {
   
     return (
       <View style={styles.container}>
-        <Button title="Print" onPress={print} />
+        <Button
+          title="Print"
+          onPress={print}
+          style={styles.button}
+          titleStyle={styles.buttonText}
+        />
         <View style={styles.spacer} />
-        <Button title="Print to PDF file" onPress={printToFile} />
+        <Button
+          title="Print to PDF file"
+          onPress={printToFile}
+          style={styles.button}
+          titleStyle={styles.buttonText}
+        />
         {Platform.OS === 'ios' && (
           <>
             <View style={styles.spacer} />
-            <Button title="Select printer" onPress={selectPrinter} />
+            <Button
+              title="Select printer"
+              onPress={selectPrinter}
+              style={styles.button}
+              titleStyle={styles.buttonText}
+            />
             <View style={styles.spacer} />
             {selectedPrinter ? (
               <Text style={styles.printer}>{`Selected printer: ${selectedPrinter.name}`}</Text>
@@ -83,17 +88,30 @@ export default function ImprimirDoacao() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      backgroundColor: '#ecf0f1',
-      flexDirection: 'column',
-      padding: 8,
-    },
-    spacer: {
-      height: 8,
-    },
-    printer: {
-      textAlign: 'center',
-    },
-  });
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#f7f7f7', 
+    flexDirection: 'column',
+    padding: 20, 
+  },
+  spacer: {
+    height: 16, 
+  },
+  printer: {
+    textAlign: 'center',
+    color: '#ba55d3', 
+    fontSize: 16, 
+  },
+  button: {
+    backgroundColor: '#ba55d3', 
+    padding: 12, 
+    borderRadius: 8, 
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff', 
+    fontSize: 16, 
+  },
+});

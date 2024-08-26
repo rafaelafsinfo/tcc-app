@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { FlatList, StyleSheet, Text } from 'react-native'
 import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Card from '../../../components/Card';
@@ -17,6 +17,7 @@ export default function MainContent() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Para quem deseja doar hoje?</Text>
       <FlatList
         style={styles.cards}
         data={data}
@@ -46,5 +47,11 @@ const styles = StyleSheet.create({
   },
   cards:{
     padding:10
+  },
+  title:{
+    paddingTop: 15,
+    alignSelf:'center',
+    fontSize: 25,
+    fontWeight:'bold'
   }
 })

@@ -1,26 +1,31 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
-export default function CardDoacao({id, NomeInst, data_doacao, produto, trajetoria}) {
-  return (
-    <View style={styles.card}>
-        <Text style={styles.text}>
-            <Text style={styles.title}>id</Text> : {id}
-        </Text>
-        <Text style={styles.text}>
-            <Text style={styles.title}>Nome</Text>: {NomeInst}
-        </Text>
-        <Text style={styles.text}>
-            <Text style={styles.title}>data</Text>: {data_doacao}
-        </Text>
-        <Text style={styles.text}>
-            <Text style={styles.title}>produto</Text>: {produto}
-        </Text>
-        <Text style={styles.text}>
-            <Text style={styles.title}>trajetoria</Text>: {trajetoria}
-        </Text>
-    </View>
-  )
+export default function CardDoacao({NomeInst, data_doacao, produto, trajetoria}) {
+
+    const get_local = (item) =>{
+        if (item == 0){
+          return 'a caminho'
+        }else{
+          return 'chegou'
+        }
+    }
+    return (
+        <View style={styles.card}>
+            <Text style={styles.text}>
+                <Text style={styles.title}>Nome</Text>: {NomeInst}
+            </Text>
+            <Text style={styles.text}>
+                <Text style={styles.title}>data</Text>: {data_doacao}
+            </Text>
+            <Text style={styles.text}>
+                <Text style={styles.title}>produto</Text>: {produto}
+            </Text>
+            <Text style={styles.text}>
+                <Text style={styles.title}>trajetoria</Text>: {get_local(trajetoria)}
+            </Text>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

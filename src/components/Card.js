@@ -4,6 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function({cnpj,nome_inst,rua,numero,bairro,cidade,estado,cep,descricao}){
 const navigation = useNavigation()
+
+    /*<Text style={styles.text}>
+    <Text style={styles.title}>descricao</Text>: {descricao}
+    </Text>*/     
     return(
         <TouchableOpacity 
         style={styles.card}
@@ -18,18 +22,16 @@ const navigation = useNavigation()
             cep: cep, 
             descricao: descricao})}>
             <Text style={styles.text}>
-                <Text style={styles.title}>nome</Text>: {nome_inst}
+                <Text style={styles.title}>{nome_inst}</Text>
             </Text>
-            <Text style={styles.text}>
-                <Text style={styles.title}>descricao</Text>: {descricao}
-            </Text>
+            
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     card:{
-        padding:'2.5%',
+        padding:'5%',
         borderRadius:25,
         borderColor:'#000',
         backgroundColor:'#4e0189',
@@ -45,7 +47,8 @@ const styles = StyleSheet.create({
         marginBottom:12,
     },
     text:{
-        color:'#fff'
+        color:'#fff',
+        alignSelf:'center'
     }
     
 })

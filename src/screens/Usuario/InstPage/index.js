@@ -4,12 +4,14 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import {useRoute} from '@react-navigation/native'
 import api from '../../../services/api'
-import {QrCodeSvg} from 'react-native-qr-svg';
 import { UserContext } from '../../../contexts/UserContext';
+import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native'
 
 export default function InstPage() {
   const route = useRoute()
   const { cnpj,nome_inst,rua,numero,bairro,cidade,estado,cep,descricao } = route.params
+  const navigation = useNavigation()
   const { user } = useContext(UserContext)
   const[btn1Visible,setbtn1Visible] = useState(true)
   const[btn2Visible,setbtn2Visible] = useState(false)
@@ -19,17 +21,15 @@ export default function InstPage() {
   const [data,setData] = useState('')
   const [error,setError] = useState(null)
 
-  const SIZE = 170
-  const CONTENT = `${cnpj}`
-
-  function formatDate(date,format) {
+  function formatDate(date,format){
     const map = {
-      mm: date.getMonth()+1,
-      dd: date.getDate(),
-      aaaa: date.getFullYear()
-    }
-    return format.replace(/mm|dd|aaaa/gi, matched => map[matched])
+        mm: date.getMonth()+1,
+        dd: date.getDate(),
+        aaaa: date.getFullYear()
+      }
+      return format.replace(/mm|dd|aaaa/gi, matched => map[matched])
   }
+
   const today = new Date()
   const formattedDate = formatDate(today,'mm-dd-aaaa')
   useEffect(() => {
@@ -37,6 +37,12 @@ export default function InstPage() {
     setIdUsuario(user.id)
     setIdinstituicao(cnpj)
   },[])
+
+  const handlepress = () => {
+    setbtn1Visible(!btn1Visible)
+    setbtn2Visible(!btn2Visible)
+  }
+
   const handleSubmit = async () =>{
     try{
       const response = await api.post('/Doacoes',{
@@ -58,28 +64,43 @@ export default function InstPage() {
     }
   }
 
-  const handlepress = () => {
-    setbtn1Visible(!btn1Visible)
-    setbtn2Visible(!btn2Visible)
-  }
   return (
     <SafeAreaView style={styles.container}>
       <Animatable.View animation='fadeInLeft' delay={500} style={styles.containerHeader}>
+        <TouchableOpacity
+            style={styles.botaovoltar}
+            onPress={()=>navigation.navigate('MainPage')}>
+          <Icon name="arrow-left" size={20} color="#fff" />
+        </TouchableOpacity>
         <Text style={styles.message}>{nome_inst}</Text>
-        
-      
       </Animatable.View>
 
       <Animatable.View style={styles.containerForm}>
         <Animatable.View animation='fadeInUp' delay={600}>
-          <Animatable.Text animation='slideInLeft' delay={900}>{cnpj}</Animatable.Text>
-          <Animatable.Text animation='slideInRight' delay={900}>{rua}</Animatable.Text>
-          <Animatable.Text animation='slideInLeft' delay={900}>{numero}</Animatable.Text>
-          <Animatable.Text animation='slideInRight' delay={900}>{bairro}</Animatable.Text>
-          <Animatable.Text animation='slideInLeft' delay={900}>{cidade}</Animatable.Text>
-          <Animatable.Text animation='slideInRight' delay={900}>{estado}</Animatable.Text>
-          <Animatable.Text animation='slideInLeft' delay={900}>{cep}</Animatable.Text>
-          <Animatable.Text animation='slideInRight' delay={900}>{descricao}</Animatable.Text>
+          <Animatable.Text animation='slideInLeft' delay={900}>
+            <Text style={styles.detailstext}>Cnpj:{'\n'}</Text>
+            {cnpj}
+          </Animatable.Text>
+          <Animatable.Text animation='slideInRight' delay={900}>
+            <Text style={styles.detailstext}>Endereço:{'\n'}</Text>
+            {rua}, {numero}
+          </Animatable.Text>
+          <Animatable.Text animation='slideInLeft' delay={900}>
+            <Text style={styles.detailstext}>Bairro:{'\n'}</Text>
+            {bairro}
+            </Animatable.Text>
+          <Animatable.Text animation='slideInRight' delay={900}>
+            <Text style={styles.detailstext}>Cidade:{'\n'}</Text>
+            {cidade} - {estado}
+          </Animatable.Text>
+          <Animatable.Text animation='slideInLeft' delay={900}>
+          <Text style={styles.detailstext}>CEP:{'\n'}</Text>
+            {cep}
+          </Animatable.Text>
+          <Animatable.Text animation='slideInRight' delay={900}>
+            <Text style={styles.detailstext}>Descrição:{'\n'}</Text>
+            {descricao}
+          </Animatable.Text>
         </Animatable.View>
         
         <Animatable.View animation='fadeInUp' delay={1200} style={styles.root}>
@@ -136,28 +157,30 @@ const styles = StyleSheet.create({
     backgroundColor:'#f9f7f8'
   },
   containerHeader:{
-    marginTop:'15%',
-    marginBottom:'10%',
-    paddingStart:'5%',  
+    width: '100%',
+    height: '20%',
+    borderBottomLeftRadius:25,
+    borderBottomRightRadius:25,
+    alignItems: 'center',
+    paddingTop: '25%',
+    backgroundColor:'#4e0189' 
   },
   containerForm:{
     flex:1,
-    borderTopLeftRadius:25,
-    borderTopRightRadius:25,
-    paddingStart:'5%',
-    paddingEnd:'5%',
-    backgroundColor: '#f6f7f9'
-
+    backgroundColor: '#f6f7f9',
+    marginTop:'10%',
+    paddingStart:'7%',
+    paddingEnd:'7%',
   },
   message:{
     fontSize:28,
     fontWeight:'bold',
-    color:'#000',
+    color:'#fff',
   },
   title:{
     fontSize:20,
     marginTop:28,
-    color:'#4E0189'
+    color:'#ff8c00'
   },
   qr: {
     padding: 15,
@@ -199,4 +222,16 @@ const styles = StyleSheet.create({
     fontSize:16,
     borderColor:'#cdd1e0'
   },
+  botaovoltar:{
+    position: 'absolute',
+    top: 10,
+    left:10,
+    padding: 10,
+    zIndex: 1000  
+  },
+  detailstext:{
+    fontSize:18,
+    fontWeight:'bold'
+  }
+
 })
