@@ -4,7 +4,7 @@ import { SafeAreaView, StyleSheet, Text, TouchableOpacity, TextInput } from "rea
 import * as Animatable from 'react-native-animatable'
 import Icon from 'react-native-vector-icons/Feather';
 import { UserContext } from '../../../contexts/UserContext';
-
+import api from "../../../services/api";
 
 export default function OpcoesUsuario(){
 
@@ -21,7 +21,7 @@ export default function OpcoesUsuario(){
     const Submit = async () =>{
         try{
 
-            const response = await api.patch('/Usuario',{
+            const response = await api.put('/Usuario',{
                 id,
                 p_nome,
                 sobrenome,
@@ -29,7 +29,7 @@ export default function OpcoesUsuario(){
                 cidade,
                 estado
             })
-            console.log(response)
+            console.log(response.data)
 
         }catch(error){
             setError('erro ao logar')
