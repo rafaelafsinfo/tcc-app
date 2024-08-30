@@ -13,7 +13,7 @@ export default function CardDoacao({NomeInst, data_doacao, produto, trajetoria})
     return (
         <View style={styles.card}>
             <Text style={styles.text}>
-                <Text style={styles.title}>Nome</Text>: {NomeInst}
+                <Text style={styles.title}>Razao Social</Text>: {NomeInst}
             </Text>
             <Text style={styles.text}>
                 <Text style={styles.title}>data</Text>: {data_doacao}

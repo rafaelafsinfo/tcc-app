@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useContext } from 'react'
-import { StyleSheet, Text, View,TouchableOpacity,TextInput } from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity,TextInput, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import {useRoute} from '@react-navigation/native'
@@ -67,6 +67,8 @@ export default function InstPage() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
+
       <Animatable.View animation='fadeInLeft' delay={500} style={styles.containerHeader}>
         <TouchableOpacity
             style={styles.botaovoltar}
@@ -145,7 +147,7 @@ export default function InstPage() {
         
       </Animatable.View>
 
-
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -153,7 +155,7 @@ export default function InstPage() {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'#f9f7f8'
+    backgroundColor:'#f9f7f8',
   },
   containerHeader:{
     width: '100%',
@@ -212,6 +214,7 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   input:{
+    position: 'relative',
     borderWidth:1,
     borderRadius:10,
     paddingStart:8,

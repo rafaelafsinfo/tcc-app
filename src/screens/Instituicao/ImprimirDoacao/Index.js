@@ -20,13 +20,14 @@ export default function ImprimirDoacao() {
   <style>
     #qrcode {
       alignItems: 'center',
+      flex:1',
     }
   </style>
 </head>
 <body>
   
   <div id="qrcode">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=${data}&amp;size=100x100" alt=""/>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=${data}&amp" alt=""/>
   </div>
 </body>
 </html>
