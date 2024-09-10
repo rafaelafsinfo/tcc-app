@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, ScrollView, TextInput,TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { UserContext } from "../../../contexts/UserContext";
@@ -9,6 +16,9 @@ export default function Inst() {
   const [Cnpj, SetCnpj] = useState(user.Cnpj);
   const [Nome, SetNome] = useState(user.NomeInst);
   const [Email, SetEmail] = useState(user.Email);
+  const [testsenha, setTestSenha] = useState("");
+  const [test2senha, setTest2Senha] = useState("");
+  const [Senha, setSenha] = useState("");
   const [Rua, SetRua] = useState(user.Rua);
   const [Numero, SetNumero] = useState(user.Numero);
   const [Bairro, SetBairro] = useState(user.Bairro);
@@ -16,31 +26,61 @@ export default function Inst() {
   const [Estado, SetEstado] = useState(user.Estado);
   const [CEP, SetCEP] = useState(user.CEP);
   const [Descricao, SetDescricao] = useState(user.Descricao);
-  const [error,setError] = useState(null)
+  const [error, setError] = useState(null);
+  const [btn1Visible, setbtn1Visible] = useState(true);
+  const [btn2Visible, setbtn2Visible] = useState(false);
 
   const handleSubmit = async () => {
-    try {
-      const response = await api.patch("/Instituicao/", {
-        Cnpj,
-        NomeInst:Nome,
-        Rua,
-        Numero,
-        Bairro,
-        Cidade,
-        Estado,
-        CEP,
-        Descricao,
-      });
-      if (response.status) {
-        console.log(JSON.stringify(response.data));
-      } else {
-        setError("email ou senha invalidos");
+    if (senha === "") {
+      try {
+        const response = await api.patch("/Instituicao/", {
+          Cnpj,
+          NomeInst: Nome,
+          Rua,
+          Numero,
+          Bairro,
+          Cidade,
+          Estado,
+          CEP,
+          Descricao,
+        });
+        if (response.status) {
+          console.log(JSON.stringify(response.data));
+        } else {
+          setError("email ou senha invalidos");
+          console.log(error);
+        }
+      } catch (error) {
+        setError("erro ao logar");
         console.log(error);
       }
-    } catch (error) {
-      setError("erro ao logar");
-      console.log(error);
+    } else {
+      try {
+      } catch (error) {
+        setError("erro ao logar");
+        console.log(error);
+      }
     }
+  };
+
+  const handleSubmitPass = async () => {
+    try{
+      const response = await api.post('/Login/Instituicao',{
+        Email,
+        Senha:testsenha,
+      })
+      if (response.status){
+        setSenha(test2senha)
+        handleSubmit
+      } 
+    }catch(error){
+      setError(error)
+    }
+  };
+
+  const handlepress = () => {
+    setbtn1Visible(!btn1Visible);
+    setbtn2Visible(!btn2Visible);
   };
 
   return (
@@ -69,7 +109,6 @@ export default function Inst() {
           style={styles.input}
           onChangeText={(text) => SetEmail(text)}
         />
-
         <Text style={styles.title}>Rua:</Text>
         <TextInput
           value={Rua}
@@ -116,9 +155,38 @@ export default function Inst() {
           onChangeText={(text) => SetDescricao(text)}
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Atualizar</Text>
-        </TouchableOpacity>
+        {btn1Visible && (
+          <View>
+            <TouchableOpacity style={styles.button} onPress={handlepress}>
+              <Text>alterar senha</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Atualizar</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {btn2Visible && (
+          <View>
+            <Text style={styles.title}>digite sua antiga senha</Text>
+            <TextInput
+            value={testsenha}
+            style={styles.input}
+            onChangeText={(text) => setTestSenha(text)}
+            />
+            <Text style={styles.title}>digite a nova senha</Text>
+            <TextInput
+            value={test2senha}
+            style={styles.input}
+            onChangeText={(text) => setTest2Senha(text)}
+            />
+            <TouchableOpacity style={styles.button} onPress={handlepress}>
+              <Text>cancelar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleSubmitPass}>
+              <Text style={styles.buttonText}>Atualizar</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
