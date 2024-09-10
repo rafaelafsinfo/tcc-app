@@ -29,7 +29,7 @@ export default function Login() {
           response2.data.dados[0].estado,
           response2.data.dados[0].username)  
       }else{
-        setError('email ou senha invalidos')
+        setError('email ou senha invalidos'+response.data)
         console.log(error)
       }
     }catch(error){
