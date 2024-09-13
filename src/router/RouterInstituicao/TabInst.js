@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons'
 import MainInst from './MainStackInst'
 import ListDoacoes from '../../screens/Instituicao/ListDoacoes';
 import Rastreio from '../../screens/Rastreio';
+import Home from '../../screens/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,6 +34,13 @@ export default function TabRoutes(){
         component={Rastreio}
         options={{
             tabBarIcon: ({ size }) => <Feather name="save" size={ size }/>
+        }}
+      />
+      <Tab.Screen 
+        name="Logout"
+        component={Home}
+        options={{
+            tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>
         }}
       />
     </Tab.Navigator>
