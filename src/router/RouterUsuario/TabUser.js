@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons'
 import MainUser from './MainStackUser'
 import Profile from '../../screens/Usuario/Perfil'
 import Consulta from '../../screens/Usuario/Consulta'
+import Home from '../../screens/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,6 +36,15 @@ export default function TabRoutes(){
             tabBarIcon: ({ size }) => <Feather name="align-justify" size={ size }/>
         }}
       />
+      <Tab.Screen 
+        name="Logout"
+        component={Home}
+        options={{
+            tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>,
+            tabBarStyle: { display: 'none' }
+        }}
+      />
     </Tab.Navigator>
+    
     );
 }

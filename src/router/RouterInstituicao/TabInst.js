@@ -40,9 +40,11 @@ export default function TabRoutes(){
         name="Logout"
         component={Home}
         options={{
-            tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>
+            tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>,
+            tabBarStyle: { display: 'none' }
         }}
       />
     </Tab.Navigator>
+    
     );
 }

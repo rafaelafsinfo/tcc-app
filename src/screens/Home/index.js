@@ -4,9 +4,15 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
 
+
 export default function Home() {
   const navigation = useNavigation()
-
+  
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      
+    })
+  },[navigation])
   return (
     <SafeAreaView style={styles.container}>
 
