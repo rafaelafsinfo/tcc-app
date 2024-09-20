@@ -7,7 +7,6 @@ import Cadastro from "../screens/Usuario/Cadastro";
 import CadastroInst from "../screens/Instituicao/CadastroInst";
 import TabUser from "./RouterUsuario/TabUser";
 import TabInst from "./RouterInstituicao/TabInst";
-import { NavigationContainer } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +28,11 @@ export default function () {
           component={LoginInst}
           options={{ headerShown: false }}
         />
+          <Stack.Screen
+            name="recsenha"
+            component={TabInst}
+            options={{ headerShown: false }}
+          />
         <Stack.Screen
           name="Cadastro"
           component={Cadastro}
