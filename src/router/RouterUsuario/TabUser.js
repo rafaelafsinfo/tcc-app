@@ -1,5 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native';
+import {Alert} from 'react-native'
 
 import MainUser from './MainStackUser'
 import Profile from '../../screens/Usuario/Perfil'
@@ -9,6 +11,26 @@ import Home from '../../screens/Home';
 const Tab = createBottomTabNavigator();
 
 export default function TabRoutes(){
+
+  const Verify_out = (navigation) => {
+    Alert.alert(
+      'Alerta',
+      'Deseja sair de sua cota?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Ok',
+          onPress: () => navigation.navigate('Home'),
+          style: 'cancel',
+        }
+      ],
+    );
+  }
+
     return(
       <Tab.Navigator
           screenOptions={{
@@ -39,6 +61,12 @@ export default function TabRoutes(){
       <Tab.Screen 
         name="Logout"
         component={Home}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            Verify_out(navigation);
+          },
+        })}
         options={{
             tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>,
             tabBarStyle: { display: 'none' }
