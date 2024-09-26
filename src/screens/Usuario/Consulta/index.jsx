@@ -43,7 +43,7 @@ export default function ListDoacoes() {
             NomeInst = {item.NomeInst}
             data_doacao = {item.data_doacao}
             produto = {item.produto}
-            trajetoria = {item.trajetoria}
+            trajetoria = {item.trajetoria == 1 ? "Chegou" : "a caminho"}
             
           />
         )}
