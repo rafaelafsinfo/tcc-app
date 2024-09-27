@@ -78,6 +78,12 @@ export default function Login() {
         
           <Text style={styles.registerText}>Não possui uma conta? <Text style={styles.registerSpan}>Cadastre-se</Text ></Text>
         </TouchableOpacity>
+        <TouchableOpacity 
+        style={styles.buttonRegister}
+        onPress={()=> navigation.navigate('recsenha')}>
+        
+          <Text style={styles.registerText}>Esqueceu sua senha? <Text style={styles.registerSpan}>Recuperar Senha</Text ></Text>
+        </TouchableOpacity>
         {error && <Text style={{color:'red'}}>{error}</Text>}
       </Animatable.View>
     </SafeAreaView>

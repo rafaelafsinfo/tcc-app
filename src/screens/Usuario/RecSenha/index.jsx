@@ -1,7 +1,47 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, { UseState } from 'react'
+import { UserContext } from '../../../contexts/UserContext'
+import emailjs from '@emailjs/browser'
+import api from '../../../services/api'
 
 export default function index() {
+  const [Email, setEmail] = useState('cu')
+
+  const verify_email = async () =>{
+    const response =  await api.get(`/Usuario/${Email}`)
+    console.log(response.data)
+  }
+
+  const send_email = () =>{ 
+    const codigo = Math.floor(Math.random() * (99999 - 0 + 1)) + 0;
+    const to = Email;
+    console.log(codigo);
+    console.log(to);
+  
+    const data = {
+      service_id: "service_329817j",
+      template_id: "template-bn1nlsg",
+      user_id: "wWqMRT6VQkphMFS09",
+      template_params: {
+          to: to,
+          codigo: codigo,
+        },
+    };
+
+    fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+    }).then(function (response){
+      if (response.status == 200){
+          console.log("enviado" + response);
+          resolve(response);
+      }
+      }).catch(function (err){
+        console.error(err);
+      });
+  }
+
   return (
     <View style={styles.container}>
       <Text>index</Text>
