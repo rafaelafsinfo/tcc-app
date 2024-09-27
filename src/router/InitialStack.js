@@ -7,7 +7,7 @@ import Cadastro from "../screens/Usuario/Cadastro";
 import CadastroInst from "../screens/Instituicao/CadastroInst";
 import TabUser from "./RouterUsuario/TabUser";
 import TabInst from "./RouterInstituicao/TabInst";
-import Recuperation from "../screens/Usuario/RecSenha"
+import RecSenha from "../screens/Usuario/RecSenha";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,8 +30,8 @@ export default function () {
           options={{ headerShown: false }}
         />
           <Stack.Screen
-            name="recsenha"
-            component={Recuperation}
+            name="RecSenha"
+            component={RecSenha}
             options={{ headerShown: false }}
           />
         <Stack.Screen

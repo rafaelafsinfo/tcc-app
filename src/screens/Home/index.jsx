@@ -8,11 +8,6 @@ import { useNavigation } from '@react-navigation/native'
 export default function Home() {
   const navigation = useNavigation()
   
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      
-    })
-  },[navigation])
   return (
     <SafeAreaView style={styles.container}>
 

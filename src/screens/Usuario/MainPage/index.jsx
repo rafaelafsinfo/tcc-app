@@ -13,7 +13,7 @@ export default function MainContent() {
 
 
   useEffect( () => {
-    
+     
     if(search === ''){
       api.get(`/Instituicao`).then((response) => {
         setData(response.data.dados);
