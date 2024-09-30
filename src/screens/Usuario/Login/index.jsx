@@ -14,7 +14,7 @@ export default function Login() {
   const { signInUser } = useContext(UserContext);
 
   const handleSubmit = async () => {
-    try {
+    try {''
       const response = await api.post("/Login/Usuario", {
         email,
         senha,
@@ -63,7 +63,7 @@ export default function Login() {
           keyboardType="email-address"
           autoCapitalize="none"
           autoComplete="email"
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={(text) => {setEmail(text)}}
         />
         <View>
           <Text style={styles.title}>Senha</Text>
@@ -73,7 +73,7 @@ export default function Login() {
             placeholder="Digite sua Senha"
             autoCapitalize="none"
             secureTextEntry
-            onChangeText={(text) => setSenha(text)}
+            onChangeText={(text) => {setSenha(text)}}
           />
           <TouchableOpacity
             style={styles.buttonRec}
