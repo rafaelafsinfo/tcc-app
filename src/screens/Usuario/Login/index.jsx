@@ -1,6 +1,13 @@
 import React, { useState, useContext } from "react";
 import api from "../../../services/api";
-import { Text, StyleSheet, TextInput, TouchableOpacity,View } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+  ScrollView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
@@ -14,7 +21,8 @@ export default function Login() {
   const { signInUser } = useContext(UserContext);
 
   const handleSubmit = async () => {
-    try {''
+    try {
+      ("");
       const response = await api.post("/Login/Usuario", {
         email,
         senha,
@@ -35,7 +43,7 @@ export default function Login() {
         console.log(error);
       }
     } catch (error) {
-      setError("erro ao logar");
+      setError("erro ao logar" + error);
       console.log(error);
     }
   };
@@ -55,52 +63,60 @@ export default function Login() {
         delay={600}
         style={styles.containerForm}
       >
-        <Text style={styles.title}>E-mail</Text>
-        <TextInput
-          value={email}
-          style={styles.input}
-          placeholder="Digite seu E-mail"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoComplete="email"
-          onChangeText={(text) => {setEmail(text)}}
-        />
-        <View>
-          <Text style={styles.title}>Senha</Text>
+        <ScrollView>
+          <Text style={styles.title}>E-mail</Text>
           <TextInput
-            value={senha}
+            value={email}
             style={styles.input}
-            placeholder="Digite sua Senha"
+            placeholder="Digite seu E-mail"
+            keyboardType="email-address"
             autoCapitalize="none"
-            secureTextEntry
-            onChangeText={(text) => {setSenha(text)}}
+            autoComplete="email"
+            onChangeText={(text) => {
+              setEmail(text);
+            }}
           />
-          <TouchableOpacity
-            style={styles.buttonRec}
-            onPress={() => navigation.navigate("RecSenha")}
-          >
-            <Text style={styles.registerText}>
-              Esqueceu sua senha?{" "}
-              <Text style={styles.registerSpan}>Recuperar Senha</Text>
-            </Text>
-          </TouchableOpacity>
-        </View>
+          <View>
+            <Text style={styles.title}>Senha</Text>
+            <TextInput
+              value={senha}
+              style={styles.input}
+              placeholder="Digite sua Senha"
+              autoCapitalize="none"
+              secureTextEntry
+              onChangeText={(text) => {
+                setSenha(text);
+              }}
+            />
+            <TouchableOpacity
+              style={styles.buttonRec}
+              onPress={() => navigation.navigate("RecSenha")}
+            >
+              <Text style={styles.registerText}>
+                Esqueceu sua senha?{" "}
+                <Text style={styles.registerSpan}>Recuperar Senha</Text>
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+          style={styles.containerButton}>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Entrar</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonRegister}
+              onPress={() => navigation.navigate("Cadastro")}
+            >
+              <Text style={styles.registerText}>
+                Não possui uma conta?{" "}
+                <Text style={styles.registerSpan}>Cadastre-se</Text>
+              </Text>
+            </TouchableOpacity>
+          </View>
 
-        <TouchableOpacity
-          style={styles.buttonRegister}
-          onPress={() => navigation.navigate("Cadastro")}
-        >
-          <Text style={styles.registerText}>
-            Não possui uma conta?{" "}
-            <Text style={styles.registerSpan}>Cadastre-se</Text>
-          </Text>
-        </TouchableOpacity>
-
-        {error && <Text style={{ color: "red" }}>{error}</Text>}
+          {error && <Text style={{ color: "red" }}>{error}</Text>}
+        </ScrollView>
       </Animatable.View>
     </SafeAreaView>
   );
@@ -144,6 +160,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderColor: "#cdd1e0",
   },
+  containerButton:{
+    flex:1,
+  },
   button: {
     backgroundColor: "#4e0189",
     width: "100%",
@@ -159,7 +178,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   buttonRegister: {
-    position: "absolute",
+    padding:"5%",
     bottom: "5%",
     alignSelf: "center",
   },
