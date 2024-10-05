@@ -49,7 +49,7 @@ export default function RecSenha() {
       message: codigo,
     };
 
-    /*try {
+    try {
       emailjs.send('service_329817j','template_bn1nlsg',templateParams,{
         publicKey:'sZEdmnqG5MHXZdaUD',
       }).then((response) => {
@@ -59,7 +59,7 @@ export default function RecSenha() {
       })
     } catch (err) {
       err instanceof EmailJSResponseStatus ? console.error('EMAILJS FAILED...', err) : console.error(err)
-    }*/
+    }
   }
 
   const verify_code = async () => {
