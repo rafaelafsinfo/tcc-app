@@ -55,7 +55,7 @@ export default function InstPage() {
 
       })
       if (response.status){
-        //navigation.navigate('MainPage')
+        navigation.navigate('MainPage')
       }else{
         setError('email ou senha invalidos')
         console.log(error)
