@@ -42,7 +42,7 @@ export default function InstPage() {
   const handlepress = () => {
     setbtn1Visible(!btn1Visible)
     setbtn2Visible(!btn2Visible)
-    setIsBackgroundDark(true);
+    setIsBackgroundDark(!isBackgroundDark);
   }
 
   const handleSubmit = async () =>{
@@ -55,7 +55,7 @@ export default function InstPage() {
 
       })
       if (response.status){
-        //navigation.navigate('MainPage')
+        navigation.navigate('MainPage')
       }else{
         setError('email ou senha invalidos')
         console.log(error)
@@ -111,33 +111,34 @@ export default function InstPage() {
               <Text style={styles.buttonText}>doar</Text>
             </TouchableOpacity>
           )}
-          {btn2Visible && (
-          <View style={styles.containerDonation}>
-            <TextInput
-              value={produto}
-              style={styles.input}
-              placeholder='Digite o produto a ser doado'
-              keyboardType='default'
-              onChangeText={text => setProduto(text)}
-            />
-
-            <TouchableOpacity 
-            style={styles.button}
-            onPress={handleSubmit}>
-                <Text style={styles.buttonText}>doar</Text>
-            </TouchableOpacity>
-              
-            <TouchableOpacity 
-            style={styles.button}
-            onPress={handlepress}>
-              <Text style={styles.buttonText}>cancelar</Text>
-            </TouchableOpacity>
-          </View>
-        )}
         </Animatable.View>
       </ScrollView>
       {isBackgroundDark && (
-        <View style={styles.darkOverlay} />
+        <>
+          <View style={styles.darkOverlay} />
+          {btn2Visible && (
+            <Animatable.View animation='slideInUp' style={styles.containerDonation}>
+              <TextInput
+                value={produto}
+                style={styles.input}
+                placeholder='Digite o produto a ser doado'
+                keyboardType='default'
+                onChangeText={text => setProduto(text)}
+              />
+              <TouchableOpacity 
+              style={styles.button}
+              onPress={handleSubmit}>
+                  <Text style={styles.buttonText}>doar</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+              style={styles.button}
+              onPress={handlepress}>
+                <Text style={styles.buttonText}>cancelar</Text>
+              </TouchableOpacity>
+            </Animatable.View>
+          )}
+        </>
       )}
     </SafeAreaView>
 )}
@@ -153,8 +154,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    zIndex: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    zIndex: 1,
   },
   scrollContainer: {
     flexGrow: 1,
@@ -175,15 +176,17 @@ const styles = StyleSheet.create({
   //---------------------------------------
   containerDonation:{
     position:'absolute',
+    top: '35%', 
+    left: '10%',
+    right: '10%',
     backgroundColor:'#4e0189',
     borderRadius:20,
-    alignSelf:'center',
     alignItems:'center',
     padding:23,
-    borderColor:'black'
+    paddingBottom:60,
+    zIndex: 2,
   },
   button:{
-    position:'relative',
     backgroundColor:'#ff8c00',
     borderRadius:50,
     paddingVertical:10,
@@ -199,7 +202,6 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   input:{
-    position: 'relative',
     borderWidth:1,
     borderRadius:10,
     paddingStart:8,
