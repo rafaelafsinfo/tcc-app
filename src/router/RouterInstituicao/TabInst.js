@@ -33,7 +33,8 @@ export default function TabRoutes(){
     return(
       <Tab.Navigator
           screenOptions={{
-              headerShown: false
+              headerShown: false,
+              
           }}
       >
       <Tab.Screen 

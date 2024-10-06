@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, RefreshControl, TextInput, Text} from "react-native";
+import { StyleSheet, FlatList, RefreshControl, TextInput, Text, ScrollView} from "react-native";
 import React, { useState, useEffect, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CardDoacao from "../../../components/CardDoacao";
@@ -24,8 +24,9 @@ export default function ListDoacoes() {
       });
     } else{
       console.log(search)
+      
       setData(
-        data.filter((item) => item.data_doacao.indexOf(search) > -1)
+        data.filter((item) => item.data_doacao.indexOf(search) > -1).sort((a,b)=> b.trajetoria  - a.trajetoria)
       )
     }
   }, [search]);
@@ -58,23 +59,25 @@ export default function ListDoacoes() {
           onChangeText={(text) => setSearch(text)}
         />
       </Animatable.View>
-      <Text> total de doaçoes: {originaldata.length}</Text>
-      <FlatList
-        style={styles.cards}
-        data={data}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        renderItem={({ item }) => (
-          <CardDoacao
-            id={item.id}
-            produto={item.produto}
-            data_doacao={item.data_doacao}
-            trajetoria={item.trajetoria == 1 ? "chegou" : "a caminho"}
-          />
-        )}
-        keyExtractor={(item) => item.data_doacao}
-      />
+        <Text> total de doaçoes: {originaldata.length}</Text>
+        <FlatList
+          style={styles.cards}
+          data={data}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          renderItem={({ item }) => (
+            <CardDoacao
+              id={item.id}
+              produto={item.produto}
+              data_doacao={item.data_doacao}
+              trajetoria={item.trajetoria == 0 ? "chegou" : "a caminho"}
+            />
+          )}
+          //keyExtractor={(item) => item.id}
+          
+        />
+        
     </SafeAreaView>
   );
 }
