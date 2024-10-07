@@ -1,5 +1,5 @@
 import React,{ useState,useEffect, useContext } from 'react'
-import { StyleSheet, FlatList, RefreshControl } from 'react-native'
+import { StyleSheet, FlatList, RefreshControl,Text,View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CardDoacao from '../../../components/CardDoacoesUsuario'
 import api from '../../../services/api'
@@ -10,7 +10,7 @@ export default function ListDoacoes() {
   const { user } = useContext(UserContext)
   const [data, setData] = useState(null);
   const [refreshing,setRefreshing] = useState(false)
-
+  
   const onRefresh = async () => {
     try{
       setRefreshing(true)
