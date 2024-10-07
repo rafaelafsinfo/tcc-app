@@ -14,7 +14,7 @@ import {
   import * as Animatable from "react-native-animatable";
   import { Feather } from "@expo/vector-icons";
   
-  export default function RecSenha() {
+  export default function RecSenhaInst() {
     const navigation = useNavigation();
     const { signInUser } = useContext(UserContext);
     const [Email, setEmail] = useState("");

@@ -5,7 +5,7 @@ const api = axios.create({
     headers:{
         'Access-Control-Allow-Origin': '*',
         'X-Requested-With': 'XMLHttpRequest',
-        'Origin':'http://15.228.191.54:3000'
+
     }
 })
 

@@ -8,6 +8,7 @@ import CadastroInst from "../screens/Instituicao/CadastroInst";
 import TabUser from "./RouterUsuario/TabUser";
 import TabInst from "./RouterInstituicao/TabInst";
 import RecSenha from "../screens/Usuario/RecSenha";
+import RecSenhaInst from "../screens/Instituicao/RecSenhaInst";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,11 @@ export default function () {
           <Stack.Screen
             name="RecSenha"
             component={RecSenha}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="RecSenhaInst"
+            component={RecSenhaInst}
             options={{ headerShown: false }}
           />
         <Stack.Screen
