@@ -1,10 +1,11 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useEffect, useState} from 'react'
 import api from '../../../services/api'
 import { View,Text,StyleSheet,TextInput,TouchableOpacity, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { UserContext } from '../../../contexts/UserContext'
-
+import { Dropdown } from "react-native-element-dropdown";
+import { Feather } from "@expo/vector-icons";
 
 export default function CadastroInst() {
   const [p_nome,setPNome] = useState('')
@@ -14,8 +15,32 @@ export default function CadastroInst() {
   const [senha,setSenha] = useState('')
   const [cidade,setCidade] = useState('')
   const [estado,setEstado] = useState('')
+  const [estados,setEstados] = useState([])
+  const [cidades,setCidades] = useState([])
+  const [isFocus, setIsFocus] = useState(false);
   const [error,setError] = useState(null)
   const { signInUser } = useContext(UserContext)
+ 
+  useEffect(()=>{
+    const fetchJSON = async () =>{
+      try {
+        const response = await fetch('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json')
+      const data = await response.json()
+      setEstados(data)
+      } catch (error) {
+        console.error(error)
+      }
+      
+    }
+    fetchJSON()
+  },[])
+
+  const handleEstadoChange = (item) =>{
+    setEstado(item.sigla)
+    setCidades(item.cidades)
+
+  }
+
 
   const handleSubmit = async () =>{
     try{
@@ -112,22 +137,57 @@ export default function CadastroInst() {
             autoComplete='password-new'
             onChangeText={text => setSenha(text)}
           />
-          <Text style={styles.title}>Cidade</Text>
-          <TextInput
-            value={cidade}
-            style={styles.input}
-            placeholder='Digite sua Cidade'
-            autoCapitalize='none'
-            onChangeText={text => setCidade(text)}
-          />
           <Text style={styles.title}>Estado</Text>
-          <TextInput
-            value={estado}
-            style={styles.input}
-            placeholder='Digite sua Estado'
-            autoCapitalize='none'
-            onChangeText={text => setEstado(text)}
-          />
+          <Dropdown
+                style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={estados}
+                search
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={
+                  estado != "" ? estado : "Selecione um Estado"
+                }
+                searchPlaceholder="Search..."
+                value={estado}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={(item) => {
+                  handleEstadoChange(item)
+                  setIsFocus(false);
+                }}
+                renderLeftIcon={() => <Feather name="home" size={20} />}
+              />
+          <Text style={styles.title}>Cidade</Text>
+          <Dropdown
+                style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={cidades}
+                search
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={
+                  cidade != "" ? cidade : "Selecione um Estado"
+                }
+                searchPlaceholder="Search..."
+                value={cidade}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={(item) => {
+                  setCidade(item)
+                  setIsFocus(false);
+                }}
+                renderLeftIcon={() => <Feather name="home" size={20} />}
+              />
+          
         </ScrollView>
 
         <TouchableOpacity 
@@ -140,7 +200,15 @@ export default function CadastroInst() {
     </SafeAreaView>
   )
 }
-
+/**
+ <TextInput
+            value={estado}
+            style={styles.input}
+            placeholder='Digite sua Estado'
+            autoCapitalize='none'
+            onChangeText={text => setEstado(text)}
+          />
+ */
 const styles = StyleSheet.create({
   container:{
     flex:1,
@@ -204,5 +272,38 @@ buttonRegister:{
   },
   registerSpan:{
     color:'#4e0189'
-  }
+  },dropdown: {
+    height: 50,
+    borderColor: "gray",
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  label: {
+    position: "absolute",
+    backgroundColor: "white",
+    left: 22,
+    top: 8,
+    zIndex: 999,
+    paddingHorizontal: 8,
+    fontSize: 14,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
+
 })

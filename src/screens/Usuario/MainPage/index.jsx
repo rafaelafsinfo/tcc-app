@@ -17,6 +17,7 @@ import { Feather } from "@expo/vector-icons";
 
 export default function MainContent() {
   const estados = [
+    { label: "todos", sigla: "" },
     { label: "Acre", sigla: "AC" },
     { label: "Alagoas", sigla: "AL" },
     { label: "Amapá", sigla: "AP" },
@@ -61,89 +62,40 @@ export default function MainContent() {
   const [SelectedEstado, setSelectedEstado] = useState("");
 
   useEffect(() => {
-    switch (selectedValue) {
-      case 1:
-        useEffect(()=>{
-          if (search == ""){
-            api.get(`/Instituicao`).then((response) => {
+    const filterData = () => {
+      if (selectedValue === "1") {
+        search == ""
+          ? api.get(`/Instituicao`).then((response) => {
               setData(response.data.dados);
             })
-          }else{
-            setData(data.filter((item) => item.NomeInst.indexOf(search) > -1));
-          }
-        },[search])
-      case 2:
-        useEffect(()=>{
-          if (search == ""){
-            api.get(`/Instituicao`).then((response) => {
+          : setData(data.filter((item) => item.NomeInst.indexOf(search) > -1));
+      } else if (selectedValue === "2") {
+        search == ""
+          ? api.get(`/Instituicao`).then((response) => {
               setData(response.data.dados);
             })
-          }else{
-            setData(data.filter((item) => item.Cidade.indexOf(search) > -1));
-          }
-        },[search])
-      case 3:
-        useEffect(()=>{
-          if (SelectedEstado == ""){
-            api.get(`/Instituicao`).then((response) => {
+          : setData(data.filter((item) => item.Cidade.indexOf(search) > -1));
+      } else if (selectedValue === "3") {
+        SelectedEstado == ""
+          ? api.get(`/Instituicao`).then((response) => {
               setData(response.data.dados);
             })
-          }else{
-            setData(data.filter((item) => item.Estado.indexOf(SelectedEstado) > -1));
-          }
-        },[SelectedEstado])
-      case 4:
-        useEffect(()=>{
-          if (search == ""){
-            api.get(`/Instituicao`).then((response) => {
+          : setData(
+              data.filter((item) => item.Estado.indexOf(SelectedEstado.toLowerCase()) > -1)
+            );
+      } else if (selectedValue === "4") {
+        // Filter by CEP
+        search == ""
+          ? api.get(`/Instituicao`).then((response) => {
               setData(response.data.dados);
             })
-          }else{
-            setData(data.filter((item) => item.CEP.indexOf(search) > -1));
-          }
-        },[search])
-    
-      default:
-        break;
-    }
-  },[selectedValue])
+          : setData(data.filter((item) => item.CEP.indexOf(search) > -1));
+      }
+    };
 
-  async function SearchRazaoSocial() {
-    if (search == ""){
-      api.get(`/Instituicao`).then((response) => {
-        setData(response.data.dados);
-      })
-    }else{
-      setData(data.filter((item) => item.NomeInst.indexOf(search) > -1));
-    }
-  }
-  async function SearchCidade() {
-    if (search == ""){
-      api.get(`/Instituicao`).then((response) => {
-        setData(response.data.dados);
-      })
-    }else{
-      setData(data.filter((item) => item.Cidade.indexOf(search) > -1));
-    }
-  }
-  async function SearchEstado() {
-    if (SelectedEstado == ""){
-      api.get(`/Instituicao`).then((response) => {
-        setData(response.data.dados);
-      })
-    }else{
-      setData(data.filter((item) => item.Estado.indexOf(SelectedEstado) > -1));
-    }
-  }
-  async function SearchCEP() {
-    if (search == ""){
-      api.get(`/Instituicao`).then((response) => {
-        setData(response.data.dados);
-      })
-    }else{
-      setData(data.filter((item) => item.CEP.indexOf(search) > -1));
-    }
-  }
+    filterData();
+  }, [selectedValue, search, SelectedEstado]);
+
   /*useEffect(() => {
     if (search === "") {
       api.get(`/Instituicao`).then((response) => {
@@ -227,9 +179,9 @@ export default function MainContent() {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder={SelectedEstado != ""
-                  ? SelectedEstado
-                  : "Selecione um Estado"}
+                placeholder={
+                  SelectedEstado != "" ? SelectedEstado : "Selecione um Estado"
+                }
                 searchPlaceholder="Search..."
                 value={SelectedEstado}
                 onFocus={() => setIsFocus(true)}
