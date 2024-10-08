@@ -41,6 +41,7 @@ export default function TabRoutes(){
         name="MainUser" 
         component={MainUser}
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="home" size={ size }/>
         }}
       />
@@ -48,6 +49,7 @@ export default function TabRoutes(){
         name="Profile" 
         component={Profile} 
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="user" size={ size }/>
         }}
       />
@@ -55,6 +57,7 @@ export default function TabRoutes(){
         name="Consulta" 
         component={Consulta} 
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="align-justify" size={ size }/>
         }}
       />
@@ -68,6 +71,7 @@ export default function TabRoutes(){
           },
         })}
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>,
             tabBarStyle: { display: 'none' }
         }}

@@ -102,14 +102,13 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor: '#f6f7f9'
     },
-    containerHeader:{
-        width: '100%',
-        height: '20%',
+    containerHeader: {
+        height: 120,
         borderBottomLeftRadius:25,
         borderBottomRightRadius:25,
+        backgroundColor:'#4e0189',
         alignItems: 'center',
-        paddingTop: '25%',
-        backgroundColor:'#4e0189'
+        justifyContent: 'center',
       },
     textmessage:{
         fontSize:28,

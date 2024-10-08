@@ -41,6 +41,7 @@ export default function TabRoutes(){
         name="MainInst" 
         component={MainInst}
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="home" size={ size }/>
         }}
       />
@@ -48,6 +49,7 @@ export default function TabRoutes(){
         name="ListDoacoes" 
         component={ListDoacoes}
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="activity" size={ size }/>
         }}
       />
@@ -55,6 +57,7 @@ export default function TabRoutes(){
         name="Rastreio" 
         component={Rastreio}
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="save" size={ size }/>
         }}
       />
@@ -68,6 +71,7 @@ export default function TabRoutes(){
           },
         })}
         options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>,
             tabBarStyle: { display: 'none' }
         }}

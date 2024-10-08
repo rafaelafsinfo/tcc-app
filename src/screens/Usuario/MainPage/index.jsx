@@ -153,7 +153,7 @@ export default function MainContent() {
               setSelectedValue(item.value);
               setIsFocus(false);
             }}
-            renderLeftIcon={() => <Feather name="home" size={20} />}
+            renderRightIcon={() => <Feather name="filter" size={20} />}
           />
         </View>
         {selectedValue != "" && (
@@ -229,11 +229,12 @@ const styles = StyleSheet.create({
   },
   containerHeader: {
     height: 120,
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-    backgroundColor: "#4e0189",
-    alignItems: "center",
-    justifyContent: "center",
+    borderBottomLeftRadius:25,
+    borderBottomRightRadius:25,
+    backgroundColor:'#4e0189',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
   },
   title: {
     fontSize: 25,
@@ -253,10 +254,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   dropdown: {
-    height: 50,
+    marginHorizontal: 20,
+    height: 55,
     borderColor: "gray",
-    borderWidth: 0.5,
-    borderRadius: 8,
+    borderWidth: 1,
+    borderRadius: 20,
     paddingHorizontal: 8,
   },
   icon: {
