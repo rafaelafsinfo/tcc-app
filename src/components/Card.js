@@ -33,10 +33,13 @@ const styles = StyleSheet.create({
     card:{
         padding:'5%',
         borderRadius:25,
-        borderColor:'#000',
         backgroundColor:'#4e0189',
         marginVertical:8,
         marginHorizontal:16,
+        shadowColor:"#000",
+        shadowOpacity:0.5,
+        shadowRadius:3.84,
+        elevation:5
         
     },
     title:{
