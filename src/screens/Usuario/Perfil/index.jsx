@@ -40,11 +40,11 @@ export default function OpcoesUsuario(){
     return(
         <SafeAreaView style={styles.maincontainer}>
 
-            <Animatable.View animation='fadeInDown' delay={600} style={styles.containerHeader}>
+            <Animatable.View animation='fadeInDown' style={styles.containerHeader}>
                 <Text style={styles.textmessage}>Alterar Usuário</Text>
             </Animatable.View>
 
-            <Animatable.View animation='fadeInUp' dalay={500} style={styles.containeropcoes}>
+            <Animatable.View animation='fadeInUp'style={styles.containeropcoes}>
                 
                 <Text style={styles.entradas}>Primeiro nome:</Text>
                 <TextInput
@@ -119,23 +119,20 @@ const styles = StyleSheet.create({
         top: 10,
         left:10,
         padding: 10,
-        zIndex: 1000  
     },
     containeropcoes:{
         flex: 1,
-        marginTop:'10%',
-        paddingStart:'10%',
-        paddingEnd:'10%',
+        marginTop:'5%',
+        paddingStart:'5%',
+        paddingEnd:'5%',
       },
     botaosubmeter:{
         fontSize:17,
         color: '#fff',
         backgroundColor: '#4e0189',
-        paddingRight:20,
-        paddingLeft:20,
-        paddingTop: 10,
-        paddingBottom: 10,
-        borderRadius: 20,
+        margin:'5%',
+        padding:15,
+        borderRadius: 25,
         alignSelf:'center'
     },
     entradas:{
