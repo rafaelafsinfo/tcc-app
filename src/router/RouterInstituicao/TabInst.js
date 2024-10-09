@@ -14,7 +14,7 @@ export default function TabRoutes(){
   const Verify_out = (navigation) => {
     Alert.alert(
       'Alerta',
-      'Deseja sair de sua cota?',
+      'Deseja sair de sua conta?',
       [
         {
           text: 'Cancel',
@@ -42,7 +42,8 @@ export default function TabRoutes(){
         component={MainInst}
         options={{
             tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="home" size={ size }/>
+            tabBarIcon: ({ size }) => <Feather name="home" size={ size }
+            />
         }}
       />
       <Tab.Screen 
