@@ -14,7 +14,7 @@ export default function TabRoutes(){
   const Verify_out = (navigation) => {
     Alert.alert(
       'Alerta',
-      'Deseja sair de sua cota?',
+      'Deseja sair de sua conta?',
       [
         {
           text: 'Cancel',

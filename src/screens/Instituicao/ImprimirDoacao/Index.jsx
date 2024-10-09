@@ -138,11 +138,11 @@ const styles = StyleSheet.create({
   },
   printer: {
     textAlign: "center",
-    color: "#ba55d3",
+    color: "#4e0189",
     fontSize: 16,
   },
   button: {
-    backgroundColor: "#ba55d3",
+    backgroundColor: "#4e0189",
     padding: 12,
     borderRadius: 8,
     alignItems: "center",

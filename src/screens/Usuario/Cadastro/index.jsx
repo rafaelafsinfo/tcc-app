@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 50,
-    borderColor: "gray",
+    borderColor: "#4e0189",
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
