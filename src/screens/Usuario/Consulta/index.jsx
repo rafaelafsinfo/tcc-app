@@ -45,7 +45,7 @@ export default function ListDoacoes() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Animatable.View animation="fadeInUp" style={styles.content}>
+      <Animatable.View animation="fadeInUp">
         <FlatList
           data={data}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

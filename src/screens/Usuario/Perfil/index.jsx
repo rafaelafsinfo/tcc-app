@@ -87,7 +87,7 @@ export default function OpcoesUsuario(){
                 onPress={Submit}>
                     <Text 
                     style={styles.botaosubmeter}>
-                        Submeter
+                        Atualizar
                     </Text>
                 </TouchableOpacity>
 
