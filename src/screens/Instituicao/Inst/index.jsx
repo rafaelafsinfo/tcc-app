@@ -64,17 +64,17 @@ export default function Inst() {
   };
 
   const handleSubmitPass = async () => {
-    try{
-      const response = await api.post('/Login/Instituicao',{
+    try {
+      const response = await api.post("/Login/Instituicao", {
         Email,
-        Senha:testsenha,
-      })
-      if (response.status){
-        setSenha(test2senha)
-        handleSubmit
-      } 
-    }catch(error){
-      setError(error)
+        Senha: testsenha,
+      });
+      if (response.status) {
+        setSenha(test2senha);
+        handleSubmit;
+      }
+    } catch (error) {
+      setError(error);
     }
   };
 
@@ -155,38 +155,10 @@ export default function Inst() {
           onChangeText={(text) => SetDescricao(text)}
         />
 
-        {btn1Visible && (
-          <View>
-            <TouchableOpacity style={styles.button} onPress={handlepress}>
-              <Text>alterar senha</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}>Atualizar</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        {btn2Visible && (
-          <View>
-            <Text style={styles.title}>digite sua antiga senha</Text>
-            <TextInput
-            value={testsenha}
-            style={styles.input}
-            onChangeText={(text) => setTestSenha(text)}
-            />
-            <Text style={styles.title}>digite a nova senha</Text>
-            <TextInput
-            value={test2senha}
-            style={styles.input}
-            onChangeText={(text) => setTest2Senha(text)}
-            />
-            <TouchableOpacity style={styles.button} onPress={handlepress}>
-              <Text>cancelar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={handleSubmitPass}>
-              <Text style={styles.buttonText}>Atualizar</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Atualizar</Text>
+        </TouchableOpacity>
+        <View style={{ height: 24 }} />
       </ScrollView>
     </SafeAreaView>
   );

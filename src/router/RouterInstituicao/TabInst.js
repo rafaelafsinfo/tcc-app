@@ -42,7 +42,8 @@ export default function TabRoutes(){
         component={MainInst}
         options={{
             tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="home" size={ size }/>
+            tabBarIcon: ({ size }) => <Feather name="home" size={ size }
+            />
         }}
       />
       <Tab.Screen 
