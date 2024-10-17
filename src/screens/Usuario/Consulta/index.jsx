@@ -14,19 +14,36 @@ export default function ListDoacoes() {
   const [data, setData] = useState(null)
   const [refreshing,setRefreshing] = useState(false)
   const [error, setError] = useState(null)
-  const [selectedValue, setSelectedValue] = useState("")
+  const [selectedValue, setSelectedValue] = useState(0)
   const [value, setValue] = useState(null);
 
   const combodata = [
-    { label: "A Caminho", value: "0" },
-    { label: "Entregue", value: "1" },
+    { label: "Estado atual dos Pacotes", value: 0 },
+    { label: "A Caminho", value: 1 },
+    { label: "Entregue", value: 2 },
   ];
+
+
+  const filterData = () => {
+    api.get(`/Doacoes/User/${user.id}`).then(response => {
+      if (selectedValue === 0){
+        setData(response.data.dados)
+      } else if (selectedValue === 1){
+        setData(response.data.dados.filter(item => item.trajetoria === "0"))
+      } else if (selectedValue === 2) {
+        setData(response.data.dados.filter(item => item.trajetoria === "1"))
+      }
+    })
+  };
+
+
+  useEffect(() => {filterData()}, [selectedValue])
+
 
   const onRefresh = async () => {
     try{
       setRefreshing(true)
-      const response = await api.get(`/Doacoes/User/${user.id}`)
-      setData(response.data.dados)
+      filterData()
     }catch(error){
       setError(error)
     }finally{
@@ -34,65 +51,48 @@ export default function ListDoacoes() {
     }
   };
 
-  useEffect(() => {
-    api.get(`/Doacoes/User/${user.id}`)
-    .then(response => {
-      setData(response.data.dados)
-    }).catch(error => {
-      setError(error)
-    })
-  }, [])
 
   return (
     <SafeAreaView style={styles.container}>
+      <Animatable.View style={styles.containerHeader} animation="fadeInDown">
+        <Text style={styles.title}>Acompanhamento de pacotes</Text>
+      </Animatable.View>
+
       <Animatable.View animation="fadeInUp">
+        <View>
+          <Dropdown
+            style={styles.dropdown}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            iconStyle={styles.iconStyle}
+            data={combodata}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={combodata[selectedValue].label}
+            value={selectedValue}
+            onChange={(item) => setSelectedValue(item.value)}
+            renderRightIcon={() => <Feather name="filter" size={20} />}
+          />
+        </View> 
         <FlatList
+          style={styles.cards}
           data={data}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-          ListHeaderComponent={
-            <Animatable.View animation="fadeInDown">
-              <View style={styles.containerHeader}>
-                <Text style={styles.title}>Acompanhamento de pacotes</Text>
-              </View>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                iconStyle={styles.iconStyle}
-                data={combodata}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder={
-                  selectedValue != ""
-                    ? combodata[selectedValue].label
-                    : "Estado atual do Pacote"
-                }
-                value={value}
-                onChange={(item) => {
-                  setSelectedValue(item.value);
-                  setIsFocus(false);
-                }}
-                renderRightIcon={() => <Feather name="filter" size={20} />}
-              />
-            </Animatable.View>
-            
-          }
           renderItem={({ item }) => (
             <CardDoacao
               NomeInst={item.NomeInst}
               data_doacao={item.data_doacao}
               produto={item.produto}
-              trajetoria={item.trajetoria === 1 ? "Entregue" : "A caminho"}
+              trajetoria={item.trajetoria}
             />
           )}
           keyExtractor={item => item.id.toString()}
-          style={styles.cards}
           contentContainerStyle={{ paddingBottom: 20 }}
         />
       </Animatable.View>
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
