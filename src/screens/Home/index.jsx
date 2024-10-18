@@ -15,8 +15,8 @@ export default function Home() {
         style={styles.containerLogo}>
         <Animatable.Image
           animation='flipInY'
-          source={require('../../assets/imagemdoação.jpg')}
-          style={{width:'100%'}}
+          source={require('../../assets/imagemdoacao1.png')}
+          style={{width:'120%'}}
           resizeMode='contain'   
         />
       </View>

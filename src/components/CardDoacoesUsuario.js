@@ -5,9 +5,9 @@ export default function CardDoacao({NomeInst, data_doacao, produto, trajetoria})
 
     const get_local = (item) =>{
         if (item == 0){
-          return 'a caminho'
+          return 'A caminho'
         }else{
-          return 'chegou'
+          return 'Entregue'
         }
     }
     return (
