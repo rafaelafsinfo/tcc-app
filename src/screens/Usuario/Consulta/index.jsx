@@ -16,6 +16,7 @@ export default function ListDoacoes() {
   const [error, setError] = useState(null)
   const [selectedValue, setSelectedValue] = useState(0)
   const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
 
   const combodata = [
     { label: "Estado atual dos Pacotes", value: 0 },
@@ -43,7 +44,17 @@ export default function ListDoacoes() {
   const onRefresh = async () => {
     try{
       setRefreshing(true)
+<<<<<<< Updated upstream
       filterData()
+=======
+      const response = await api.get(`/Doacoes/User/${user.id}`)
+      setData(response.data.dados)
+      console.log(selectedValue)
+      if (selectedValue != "") {
+        setData(data.filter((item) => item.trajetoria === selectedValue));
+      }
+      
+>>>>>>> Stashed changes
     }catch(error){
       setError(error)
     }finally{
