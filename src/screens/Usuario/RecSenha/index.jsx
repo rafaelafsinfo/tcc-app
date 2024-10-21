@@ -45,8 +45,8 @@ export default function RecSenha() {
     console.log(to);
 
     const templateParams = {
-      to: to,
-      message: codigo,
+      to,
+      codigo,
     };
 
     try {
@@ -113,7 +113,7 @@ export default function RecSenha() {
             value={Email}
             style={styles.input}
             placeholder="exemplo@exemplo.com"
-            keyboardType="default"
+            keyboardType="email-address"
             onChangeText={(text) => setEmail(text)}
           />
 

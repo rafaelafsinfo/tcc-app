@@ -44,17 +44,8 @@ export default function ListDoacoes() {
   const onRefresh = async () => {
     try{
       setRefreshing(true)
-<<<<<<< Updated upstream
       filterData()
-=======
-      const response = await api.get(`/Doacoes/User/${user.id}`)
-      setData(response.data.dados)
-      console.log(selectedValue)
-      if (selectedValue != "") {
-        setData(data.filter((item) => item.trajetoria === selectedValue));
-      }
-      
->>>>>>> Stashed changes
+
     }catch(error){
       setError(error)
     }finally{
