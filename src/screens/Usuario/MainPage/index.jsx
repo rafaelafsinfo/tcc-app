@@ -81,7 +81,7 @@ export default function MainContent() {
               setData(response.data.dados);
             })
           : setData(
-              data.filter((item) => item.Estado.indexOf(SelectedEstado.toLowerCase()) > -1)
+              data.filter((item) => item.Estado.indexOf(SelectedEstado.toUpperCase()) > -1)
             );
       } else if (selectedValue === "4") {
         // Filter by CEP

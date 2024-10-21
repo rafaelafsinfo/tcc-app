@@ -16,9 +16,6 @@ export default function Inst() {
   const [Cnpj, SetCnpj] = useState(user.Cnpj);
   const [Nome, SetNome] = useState(user.NomeInst);
   const [Email, SetEmail] = useState(user.Email);
-  const [testsenha, setTestSenha] = useState("");
-  const [test2senha, setTest2Senha] = useState("");
-  const [Senha, setSenha] = useState("");
   const [Rua, SetRua] = useState(user.Rua);
   const [Numero, SetNumero] = useState(user.Numero);
   const [Bairro, SetBairro] = useState(user.Bairro);
@@ -63,25 +60,6 @@ export default function Inst() {
     }
   };
 
-  const handleSubmitPass = async () => {
-    try {
-      const response = await api.post("/Login/Instituicao", {
-        Email,
-        Senha: testsenha,
-      });
-      if (response.status) {
-        setSenha(test2senha);
-        handleSubmit;
-      }
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  const handlepress = () => {
-    setbtn1Visible(!btn1Visible);
-    setbtn2Visible(!btn2Visible);
-  };
 
   return (
     <SafeAreaView style={styles.container}>

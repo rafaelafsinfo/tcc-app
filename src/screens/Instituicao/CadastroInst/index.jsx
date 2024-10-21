@@ -1,9 +1,10 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState,useEffect} from 'react'
 import api from '../../../services/api'
 import { View,Text,StyleSheet,TextInput,TouchableOpacity, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
+import { Dropdown } from "react-native-element-dropdown";
 import { UserContext } from '../../../contexts/UserContext'
 
 
