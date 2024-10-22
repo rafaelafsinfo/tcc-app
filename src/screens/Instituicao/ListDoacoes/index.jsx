@@ -73,7 +73,7 @@ export default function ListDoacoes() {
               id={item.id}
               produto={item.produto}
               data_doacao={item.data_doacao}
-              trajetoria={item.trajetoria == 0 ? "Entregue" : "a caminho"}
+              trajetoria={item.trajetoria}
             />
           )}
           keyExtractor={item => item.id.toString()}

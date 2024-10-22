@@ -8,6 +8,7 @@ import {
   Touchable,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Print from "expo-print";
@@ -20,7 +21,7 @@ export default function ImprimirDoacao() {
   const navigation = useNavigation();
   const route = useRoute();
   const [selectedPrinter, setSelectedPrinter] = useState();
-  const { id } = route.params;
+  const {id} = route.params;
   const [data, setData] = useState([]);
   const html = `
 <!DOCTYPE html>
@@ -51,8 +52,9 @@ export default function ImprimirDoacao() {
 
   useEffect(() => {
     api.get(`/Doacoes/${id}`).then((Response) => {
+      console.log(id)
       setData(Response.data.dados[0]);
-      console.log(data);
+      //console.log(data);
     });
   }, []);
 
@@ -117,11 +119,18 @@ export default function ImprimirDoacao() {
           </Animatable.Text>
           <View style={styles.spacer} />
 
-          <TouchableOpacity onPress={print} style={styles.button}>
+          {data.trajetoria == 0 && (<TouchableOpacity onPress={print} style={styles.button}>
             <Animatable.Text style={styles.buttonText}>
               Imprimir
             </Animatable.Text>
-          </TouchableOpacity>
+          </TouchableOpacity>)}
+          {data.trajetoria == 1 && (
+              <TouchableOpacity onPress={print} style={styles.delbutton}>
+              <Animatable.Text style={styles.buttonText}>
+                Excluir
+              </Animatable.Text>
+            </TouchableOpacity>
+          )}
         </Animatable.View>
       </ScrollView>
     </SafeAreaView>
@@ -143,6 +152,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#4e0189",
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  delbutton: {
+    backgroundColor: "#FF0000",
     padding: 12,
     borderRadius: 8,
     alignItems: "center",

@@ -8,7 +8,8 @@ export default function CardDoacao({id,produto,data_doacao,trajetoria}) {
     <TouchableOpacity
     style={styles.card}
     onPress={() => navigation.navigate('ImprimirDoacao', {
-      id:id})}>
+      id:id,
+      })}>
         <Text style={styles.text}>
                 <Text style={styles.title}>id</Text> : {id}
             </Text>
@@ -19,7 +20,7 @@ export default function CardDoacao({id,produto,data_doacao,trajetoria}) {
                 <Text style={styles.title}>data</Text>: {data_doacao}
             </Text>
             <Text style={styles.text}>
-                <Text style={styles.title}>trajetoria</Text>: {trajetoria}
+                <Text style={styles.title}>trajetoria</Text>: {trajetoria== 0 ? "a caminho": "entregue"}
             </Text>
     </TouchableOpacity>
   )

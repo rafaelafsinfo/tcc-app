@@ -40,7 +40,7 @@ export default function InstPage() {
   const [isBackgroundDark, setIsBackgroundDark] = useState(false);
 
   const today = new Date();
-  const formattedDate = formatDate(today, "mm-dd-aaaa");
+  const formattedDate = formatDate(today, "dd/mm/aaaa");
   useEffect(() => {
     setData(formattedDate);
     setIdUsuario(user.id);
@@ -53,7 +53,7 @@ export default function InstPage() {
       dd: date.getDate(),
       aaaa: date.getFullYear(),
     };
-    return format.replace(/mm|dd|aaaa/gi, (matched) => map[matched]);
+    return format.replace(/dd|mm|aaaa/gi, (matched) => map[matched]);
   }
 
   const handlepress = () => {

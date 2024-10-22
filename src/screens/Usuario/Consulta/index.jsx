@@ -76,7 +76,7 @@ export default function ListDoacoes() {
             onChange={(item) => setSelectedValue(item.value)}
             renderRightIcon={() => <Feather name="filter" size={20} />}
           />
-        </View> 
+        </View>
         <FlatList
           style={styles.cards}
           data={data}
