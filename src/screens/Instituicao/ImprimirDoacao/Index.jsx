@@ -14,7 +14,7 @@ import * as Animatable from "react-native-animatable";
 import * as Print from "expo-print";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute,useFocusEffect } from "@react-navigation/native";
 import api from "../../../services/api";
 
 export default function ImprimirDoacao() {
@@ -42,7 +42,7 @@ export default function ImprimirDoacao() {
   </div>
 </body>
 </html>
-`;
+`; 
 
   const print = async () => {
     await Print.printAsync({
@@ -50,6 +50,13 @@ export default function ImprimirDoacao() {
     });
   };
 
+  useFocusEffect(
+    React.useCallback(()=>{
+      api.get(`/Doacoes/${id}`).then((Response) => {
+        setData(Response.data.dados[0]);
+      })
+    })
+  )
   useEffect(() => {
     api.get(`/Doacoes/${id}`).then((Response) => {
       console.log(id)
