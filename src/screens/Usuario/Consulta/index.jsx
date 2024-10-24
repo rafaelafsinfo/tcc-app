@@ -7,6 +7,7 @@ import api from '../../../services/api'
 import { UserContext } from '../../../contexts/UserContext'
 import { Dropdown } from "react-native-element-dropdown"
 import { Feather } from "@expo/vector-icons"
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function ListDoacoes() {
 
@@ -24,6 +25,27 @@ export default function ListDoacoes() {
     { label: "Entregue", value: 2 },
   ];
 
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/Doacoes/User/${user.id}`);
+      setData(response.data.dados);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setSelectedValue(0);
+      fetchData();
+    }, [user.id])
+  );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchData();
+    setRefreshing(false);
+  };
 
   const filterData = () => {
     api.get(`/Doacoes/User/${user.id}`).then(response => {
@@ -39,19 +61,6 @@ export default function ListDoacoes() {
 
 
   useEffect(() => {filterData()}, [selectedValue])
-
-
-  const onRefresh = async () => {
-    try{
-      setRefreshing(true)
-      filterData()
-
-    }catch(error){
-      setError(error)
-    }finally{
-      setRefreshing(false)
-    }
-  };
 
 
   return (

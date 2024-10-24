@@ -30,7 +30,7 @@ export default function Inst() {
   const handleSubmit = async () => {
     if (senha === "") {
       try {
-        const response = await api.patch("/Instituicao/", {
+        const response = await api.put("/Instituicao/", {
           Cnpj,
           NomeInst: Nome,
           Rua,

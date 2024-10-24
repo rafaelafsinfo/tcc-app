@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../../../contexts/UserContext";
+import Message from "../../../components/Message";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ export default function Login() {
   const { signInUser } = useContext(UserContext);
 
   const handleSubmit = async () => {
-    try {
+    try { 
       ("");
       const response = await api.post("/Login/Usuario", {
         email,
@@ -39,7 +40,7 @@ export default function Login() {
           response2.data.dados[0].username
         );
       } else {
-        setError("email ou senha invalidos" + response.data);
+        setError("email ou senha invalidos");
         console.log(error);
       }
     } catch (error) {
@@ -62,7 +63,8 @@ export default function Login() {
         animation="fadeInUp"
         delay={600}
         style={styles.containerForm}
-      >
+        >
+        {error && <Message type={"error"} message={error}>{error}</Message>}
         <Text style={styles.title}>E-mail</Text>
         <TextInput
           value={email}
@@ -106,7 +108,6 @@ export default function Login() {
             <Text style={styles.registerSpan}>Cadastre-se</Text>
           </Text>
         </TouchableOpacity>
-        {error && <Text style={{ color: "red" }}>{error}</Text>}
       </Animatable.View>
     </SafeAreaView>
     )

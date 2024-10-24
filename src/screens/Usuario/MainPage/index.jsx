@@ -16,6 +16,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { Feather } from "@expo/vector-icons";
 import Message from "../../../components/Message";
 import { useRoute } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function MainContent() {
   const estados = [
@@ -66,6 +67,30 @@ export default function MainContent() {
   const [SelectedEstado, setSelectedEstado] = useState("");
   const [mensagem, setMessage] = useState('')
   const [tipo, setType] = useState('success')
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/Instituicao`);
+      setData(response.data.dados);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchData();
+    setRefreshing(false);
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+      setSelectedValue("");
+      setSearch("");
+      setSelectedEstado("");
+    }, [])
+  );
 
   useEffect(()=>{
     setMessage(message)
@@ -119,17 +144,6 @@ export default function MainContent() {
     }
   }, [search]);*/
 
-  const onRefresh = async () => {
-    try {
-      setRefreshing(true);
-      const response = await api.get(`/Instituicao`);
-      setData(response.data.dados);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setRefreshing(false);
-    }
-  };
   useEffect(() => {
     api.get("/Instituicao").then((response) => {
       setData(response.data.dados);
