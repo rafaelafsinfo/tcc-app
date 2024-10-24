@@ -50,20 +50,12 @@ export default function ImprimirDoacao() {
     });
   };
 
-  useFocusEffect(
-    React.useCallback(()=>{
-      api.get(`/Doacoes/${id}`).then((Response) => {
-        setData(Response.data.dados[0]);
-      })
-    })
-  )
-  useEffect(() => {
+  useEffect(()=>{
     api.get(`/Doacoes/${id}`).then((Response) => {
-      console.log(id)
       setData(Response.data.dados[0]);
-      //console.log(data);
-    });
-  }, []);
+    })
+  },[id])
+  
 
   return (
     <SafeAreaView style={styles.container}>

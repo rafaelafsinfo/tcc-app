@@ -20,7 +20,7 @@ export default function CardDoacao({id,produto,data_doacao,trajetoria}) {
                 <Text style={styles.title}>data</Text>: {data_doacao}
             </Text>
             <Text style={styles.text}>
-                <Text style={styles.title}>trajetoria</Text>: {trajetoria== 0 ? "a caminho": "entregue"}
+                <Text style={styles.title}>trajetoria</Text>: {trajetoria == 0 ? "a caminho": "entregue"}
             </Text>
     </TouchableOpacity>
   )

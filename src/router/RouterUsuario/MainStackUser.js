@@ -15,6 +15,9 @@ export default function Routes(){
                     name='MainPage'
                     component={MainPage}
                     options={{headerShown: false}}
+                    initialParams={{message :"bem vindo",
+                        type: 'success'}
+                    }
                 />
                 <Stack.Screen
                     name='InstPage'

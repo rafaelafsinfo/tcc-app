@@ -14,6 +14,8 @@ import api from "../../../services/api";
 import * as Animatable from "react-native-animatable";
 import { Dropdown } from "react-native-element-dropdown";
 import { Feather } from "@expo/vector-icons";
+import Message from "../../../components/Message";
+import { useRoute } from "@react-navigation/native";
 
 export default function MainContent() {
   const estados = [
@@ -53,6 +55,8 @@ export default function MainContent() {
     { label: "Estado", value: "3" },
     { label: "Cep", value: "4" },
   ];
+  const route = useRoute();
+  const { message, type } = route.params;
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [refreshing, setRefreshing] = useState(false);
@@ -60,7 +64,13 @@ export default function MainContent() {
   const [isFocus, setIsFocus] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
   const [SelectedEstado, setSelectedEstado] = useState("");
+  const [mensagem, setMessage] = useState('')
+  const [tipo, setType] = useState('success')
 
+  useEffect(()=>{
+    setMessage(message)
+    setType(type)
+  },[message,type])
   useEffect(() => {
     const filterData = () => {
       if (selectedValue === "1") {
@@ -81,7 +91,9 @@ export default function MainContent() {
               setData(response.data.dados);
             })
           : setData(
-              data.filter((item) => item.Estado.indexOf(SelectedEstado.toUpperCase()) > -1)
+              data.filter(
+                (item) => item.Estado.indexOf(SelectedEstado.toUpperCase()) > -1
+              )
             );
       } else if (selectedValue === "4") {
         // Filter by CEP
@@ -132,6 +144,7 @@ export default function MainContent() {
 
       <Animatable.View style={styles.listcontainer} animation="fadeInUp">
         <View>
+          {mensagem != "" && <Message type={tipo} msg={mensagem} />}
           <Dropdown
             style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
             placeholderStyle={styles.placeholderStyle}
@@ -229,11 +242,11 @@ const styles = StyleSheet.create({
   },
   containerHeader: {
     height: 120,
-    borderBottomLeftRadius:25,
-    borderBottomRightRadius:25,
-    backgroundColor:'#4e0189',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    backgroundColor: "#4e0189",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 10,
   },
   title: {

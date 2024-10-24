@@ -14,6 +14,7 @@ import api from "../../../services/api";
 import { UserContext } from "../../../contexts/UserContext";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Message from "../../../components/Message";
 
 export default function InstPage() {
   const route = useRoute();
@@ -38,6 +39,8 @@ export default function InstPage() {
   const [btn1Visible, setbtn1Visible] = useState(true);
   const [btn2Visible, setbtn2Visible] = useState(false);
   const [isBackgroundDark, setIsBackgroundDark] = useState(false);
+  const [message, setMessage] = useState('')
+  const [type, setType] = useState('success')
 
   const today = new Date();
   const formattedDate = formatDate(today, "dd/mm/aaaa");
@@ -71,7 +74,12 @@ export default function InstPage() {
         data,
       });
       if (response.status) {
-        navigation.navigate("MainPage");
+        setMessage('Doação Realizada com suceso!')
+        setType('success')
+        navigation.navigate("MainPage",{
+          message:message,
+          type:type
+        });
       } else {
         setError("email ou senha invalidos");
         console.log(error);
@@ -85,6 +93,7 @@ export default function InstPage() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+      
         <Animatable.View
           animation="fadeInLeft"
           delay={500}
