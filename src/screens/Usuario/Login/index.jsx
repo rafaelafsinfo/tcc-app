@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  ScrollView,
+  KeyboardAvoidingView
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
@@ -44,7 +44,7 @@ export default function Login() {
         console.log(error);
       }
     } catch (error) {
-      setError("erro ao logar" + error);
+      setError("erro ao logar");
       console.log(error);
     }
   };
@@ -59,11 +59,7 @@ export default function Login() {
         <Text style={styles.message}>Bem-vindo(a)</Text>
       </Animatable.View>
 
-      <Animatable.View
-        animation="fadeInUp"
-        delay={600}
-        style={styles.containerForm}
-        >
+      <Animatable.View animation="fadeInUp" delay={600} style={styles.containerForm}>
         {error && <Message type={"error"} message={error}>{error}</Message>}
         <Text style={styles.title}>E-mail</Text>
         <TextInput
@@ -99,15 +95,20 @@ export default function Login() {
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonRegister}>
-          <Text
-            style={styles.registerText}
-            onPress={() => navigation.navigate("Cadastro")}
-          >
-            Não possui uma conta?{" "}
-            <Text style={styles.registerSpan}>Cadastre-se</Text>
-          </Text>
-        </TouchableOpacity>
+
+        <KeyboardAvoidingView style={styles.buttonRegister}>
+          <TouchableOpacity>
+              <Text
+                style={styles.registerText}
+                onPress={() => navigation.navigate("Cadastro")}
+              >
+                  Não possui uma conta?{" "}  
+                
+                  <Text style={styles.registerSpan}>Cadastre-se</Text>
+              </Text>
+            </TouchableOpacity>
+        </KeyboardAvoidingView>
+        {error && <Text style={{ color: "red" }}>{error}</Text>}
       </Animatable.View>
     </SafeAreaView>
     )
@@ -123,6 +124,9 @@ const styles = StyleSheet.create({
     marginBottom:'8%',
     paddingStart:'5%',  
   },
+  spacer: {
+    height: 80,
+  },
   message:{
     fontSize:28,
     fontWeight:'bold',
@@ -135,7 +139,6 @@ const styles = StyleSheet.create({
     paddingStart:'5%',
     paddingEnd:'5%',
     backgroundColor: '#f6f7f9'
-
   },
   title:{
     fontSize:20,
@@ -166,10 +169,10 @@ const styles = StyleSheet.create({
     fontSize:18,
     fontWeight:'bold'
   },
-buttonRegister:{
-  position:'absolute',
-  bottom:'5%',
-  alignSelf:'center'
+  buttonRegister:{
+    top:'40%',
+    bottom:'5%',
+    alignSelf:'center'
   },
   buttonRec: {
     position: "relative",

@@ -23,6 +23,8 @@ export default function ImprimirDoacao() {
   const [selectedPrinter, setSelectedPrinter] = useState();
   const {id} = route.params;
   const [data, setData] = useState([]);
+  const [Visible, setVisible] = useState(true);
+  const [Visible2, setVisible2] = useState(false);
   const html = `
 <!DOCTYPE html>
 <html>
@@ -49,6 +51,18 @@ export default function ImprimirDoacao() {
       html,
     });
   };
+
+  const handleDeleteChange = ()=>{
+    setVisible(!Visible);
+    setVisible2(!Visible2);
+  }
+
+  const deleteDonation = async() => {
+    api.delete(`/Doacoes/${id}`).then(()=>{
+              navigation.navigate('ListDoacoes')
+            })
+    
+  }
 
   useEffect(()=>{
     api.get(`/Doacoes/${id}`).then((Response) => {
@@ -101,18 +115,6 @@ export default function ImprimirDoacao() {
           <View style={styles.spacer} />
 
           <Animatable.Text animation="slideInLeft" delay={900}>
-            <Text style={styles.detailstext}>primeiro nome:{"\n"}</Text>
-            {data.p_nome}
-          </Animatable.Text>
-          <View style={styles.spacer} />
-
-          <Animatable.Text animation="slideInLeft" delay={900}>
-            <Text style={styles.detailstext}>sobrenome:{"\n"}</Text>
-            {data.sobrenome}
-          </Animatable.Text>
-          <View style={styles.spacer} />
-
-          <Animatable.Text animation="slideInLeft" delay={900}>
             <Text style={styles.detailstext}>username:{"\n"}</Text>
             {data.username}
           </Animatable.Text>
@@ -124,11 +126,18 @@ export default function ImprimirDoacao() {
             </Animatable.Text>
           </TouchableOpacity>)}
           {data.trajetoria == 1 && (
-              <TouchableOpacity onPress={print} style={styles.delbutton}>
+            <View>
+              {Visible && (<TouchableOpacity onPress={handleDeleteChange} style={styles.delbutton}>
               <Animatable.Text style={styles.buttonText}>
                 Excluir
               </Animatable.Text>
-            </TouchableOpacity>
+            </TouchableOpacity>)}
+              {Visible2 && (<TouchableOpacity onPress={deleteDonation} style={styles.delbutton}>
+              <Animatable.Text style={styles.buttonText}>
+                Confirmar?
+              </Animatable.Text>
+            </TouchableOpacity>)}
+            </View>
           )}
         </Animatable.View>
       </ScrollView>

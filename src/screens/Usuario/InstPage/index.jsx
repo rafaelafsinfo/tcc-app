@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   InstitutionName: {
-    left: "50%",
+    left: "40%",
     fontSize: 28,
     fontWeight: "bold",
     color: "#fff",

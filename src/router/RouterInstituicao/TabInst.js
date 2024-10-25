@@ -24,7 +24,6 @@ export default function TabRoutes(){
         {
           text: 'Ok',
           onPress: () => navigation.navigate('Home'),
-          style: 'cancel',
         }
       ],
     );
@@ -32,18 +31,19 @@ export default function TabRoutes(){
 
     return(
       <Tab.Navigator
-          screenOptions={{
-              headerShown: false,
-              
-          }}
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: '#4e0189',
+          tabBarInactiveTintColor: 'black',
+          tabBarHideOnKeyboard: true,
+        }}
       >
       <Tab.Screen 
         name="MainInst" 
         component={MainInst}
         options={{
             tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="home" size={ size }
-            />
+            tabBarIcon: ({ size, color }) => <Feather name="home" size={ size } color={color}/>
         }}
       />
       <Tab.Screen 
@@ -51,7 +51,7 @@ export default function TabRoutes(){
         component={ListDoacoes}
         options={{
             tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="activity" size={ size }/>
+            tabBarIcon: ({ size, color }) => <Feather name="activity" size={ size } color={color}/>
         }}
       />
       <Tab.Screen 
@@ -59,7 +59,7 @@ export default function TabRoutes(){
         component={Rastreio}
         options={{
             tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="save" size={ size }/>
+            tabBarIcon: ({ size, color }) => <Feather name="save" size={ size } color={color}/>
         }}
       />
       <Tab.Screen 
@@ -72,9 +72,8 @@ export default function TabRoutes(){
           },
         })}
         options={{
-            tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>,
-            tabBarStyle: { display: 'none' }
+          tabBarLabel: () => null,
+          tabBarIcon: ({ size, color }) => <Feather name="log-out" size={size} color={color} />
         }}
       />
     </Tab.Navigator>

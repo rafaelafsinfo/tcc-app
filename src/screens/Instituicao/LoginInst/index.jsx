@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView 
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
@@ -98,7 +99,9 @@ export default function LoginInst() {
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonRegister}>
+
+        <KeyboardAvoidingView style={styles.buttonRegister}>
+        <TouchableOpacity>
           <Text
             style={styles.registerText}
             onPress={() => navigation.navigate("CadastroInst")}
@@ -107,6 +110,7 @@ export default function LoginInst() {
             <Text style={styles.registerSpan}>Cadastre-se</Text>
           </Text>
         </TouchableOpacity>
+        </KeyboardAvoidingView>
         {error && <Text style={{ color: "red" }}>{error}</Text>}
       </Animatable.View>
     </SafeAreaView>
@@ -166,9 +170,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   buttonRegister: {
-    position: "absolute",
-    bottom: "5%",
-    alignSelf: "center",
+    top:'40%',
+    bottom:'5%',
+    alignSelf:'center'
   },
   buttonRec: {
     position: "relative",

@@ -6,15 +6,17 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { UserContext } from "../../../contexts/UserContext";
 import api from "../../../services/api";
+import { RefreshControl } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function Inst() {
   const { user } = useContext(UserContext);
   const [Cnpj, SetCnpj] = useState(user.Cnpj);
-  const [Nome, SetNome] = useState(user.NomeInst);
+  const [NomeInst, SetNome] = useState(user.NomeInst);
   const [Email, SetEmail] = useState(user.Email);
   const [Rua, SetRua] = useState(user.Rua);
   const [Numero, SetNumero] = useState(user.Numero);
@@ -24,47 +26,75 @@ export default function Inst() {
   const [CEP, SetCEP] = useState(user.CEP);
   const [Descricao, SetDescricao] = useState(user.Descricao);
   const [error, setError] = useState(null);
-  const [btn1Visible, setbtn1Visible] = useState(true);
-  const [btn2Visible, setbtn2Visible] = useState(false);
+
+
+  const fetchUserData = useCallback(() => {
+    SetCnpj(user.Cnpj);
+    SetNome(user.NomeInst);
+    SetEmail(user.Email);
+    SetRua(user.Rua);
+    SetNumero(user.Numero);
+    SetBairro(user.Bairro);
+    SetCidade(user.Cidade);
+    SetEstado(user.Estado);
+    SetCEP(user.CEP);
+    SetDescricao(user.Descricao);
+}, [user]);
+
+const onRefresh = async () => {
+  setRefreshing(true);
+  fetchUserData();
+  setRefreshing(false);
+};
 
   const handleSubmit = async () => {
-    if (senha === "") {
-      try {
-        const response = await api.put("/Instituicao/", {
-          Cnpj,
-          NomeInst: Nome,
-          Rua,
-          Numero,
-          Bairro,
-          Cidade,
-          Estado,
-          CEP,
-          Descricao,
-        });
-        if (response.status) {
-          console.log(JSON.stringify(response.data));
-        } else {
-          setError("email ou senha invalidos");
-          console.log(error);
-        }
-      } catch (error) {
-        setError("erro ao logar");
+    try {
+      const response = await api.patch("/Instituicao/", {
+        Cnpj,
+        NomeInst,
+        Rua,
+        Numero,
+        Bairro,
+        Cidade,
+        Estado,
+        CEP,
+        Descricao,
+      });
+      
+      user.Cnpj = Cnpj
+      user.NomeInst = NomeInst
+      user.Rua = Rua
+      user.Numero = Numero
+      user.Bairro = Bairro
+      user.Cidade = Cidade
+      user.Estado = Estado
+      user.CEP = CEP
+      user.Descricao = Descricao
+
+      if (response.status) {
+        console.log(JSON.stringify(response.data));
+        console.log('atualizado com sucesso')
+      } else {
+        setError("erro ao atualizar");
         console.log(error);
       }
-    } else {
-      try {
-      } catch (error) {
-        setError("erro ao logar");
-        console.log(error);
-      }
+    } catch (error) {
+      setError("erro ao logar");
+      console.log(error);
     }
+    onRefresh()
   };
 
+  useFocusEffect(
+    useCallback(() => {
+        fetchUserData();
+    }, [fetchUserData])
+);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.containerHeader}>
-        <Text style={styles.message}>olá {Nome}</Text>
+        <Text style={styles.message}>olá {NomeInst}</Text>
       </View>
 
       <ScrollView style={styles.containerForm}>
@@ -72,11 +102,12 @@ export default function Inst() {
         <TextInput
           value={Cnpj}
           style={styles.input}
+          editable={false}
           onChangeText={(text) => SetCnpj(text)}
         />
         <Text style={styles.title}>Nome:</Text>
         <TextInput
-          value={Nome}
+          value={NomeInst}
           style={styles.input}
           onChangeText={(text) => SetNome(text)}
         />

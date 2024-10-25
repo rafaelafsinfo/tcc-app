@@ -1,16 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native';
-import {Alert} from 'react-native'
+import { Feather } from '@expo/vector-icons';
+import { Alert } from 'react-native';
 
-import MainUser from './MainStackUser'
-import Profile from '../../screens/Usuario/Perfil'
-import Consulta from '../../screens/Usuario/Consulta'
+import MainUser from './MainStackUser';
+import Profile from '../../screens/Usuario/Perfil';
+import Consulta from '../../screens/Usuario/Consulta';
 import Home from '../../screens/Home';
 
 const Tab = createBottomTabNavigator();
 
-export default function TabRoutes(){
+export default function TabRoutes() {
 
   const Verify_out = (navigation) => {
     Alert.alert(
@@ -18,47 +17,49 @@ export default function TabRoutes(){
       'Deseja sair de sua conta?',
       [
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
         {
           text: 'Ok',
           onPress: () => navigation.navigate('Home'),
-          style: 'cancel',
         }
       ],
     );
-  }
+  };
 
-    return(
-      <Tab.Navigator
-          screenOptions={{
-              headerShown: false
-          }}
-      >
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#4e0189',
+        tabBarInactiveTintColor: 'black',
+        tabBarHideOnKeyboard: true,
+      }}
+    >
       <Tab.Screen 
         name="MainUser" 
         component={MainUser}
         options={{
-            tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="home" size={ size }/>
+          tabBarLabel: () => null,
+          tabBarIcon: ({ size, color }) => <Feather name="home" size={size} color={color} />
         }}
       />
       <Tab.Screen 
         name="Profile" 
-        component={Profile} 
+        component={Profile}
         options={{
-            tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="user" size={ size }/>
+          tabBarLabel: () => null,
+          tabBarIcon: ({ size, color }) => <Feather name="user" size={size} color={color} />
         }}
       />
       <Tab.Screen 
         name="Consulta" 
-        component={Consulta} 
+        component={Consulta}
         options={{
-            tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="align-justify" size={ size }/>
+          tabBarLabel: () => null,
+          tabBarIcon: ({ size, color }) => <Feather name="align-justify" size={size} color={color} />
         }}
       />
       <Tab.Screen 
@@ -71,12 +72,10 @@ export default function TabRoutes(){
           },
         })}
         options={{
-            tabBarLabel: () => null,
-            tabBarIcon: ({ size }) => <Feather name="log-out" size={ size }/>,
-            tabBarStyle: { display: 'none' }
+          tabBarLabel: () => null,
+          tabBarIcon: ({ size, color }) => <Feather name="log-out" size={size} color={color} />
         }}
       />
     </Tab.Navigator>
-    
-    );
+  );
 }

@@ -129,7 +129,7 @@ export default function RecSenha() {
             value={Codigo}
             style={styles.input}
             placeholder="00000"
-            keyboardType="default"
+            keyboardType="numeric"
             onChangeText={(text) => setCodigo(text)}
           />
 

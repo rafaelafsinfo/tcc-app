@@ -1,5 +1,5 @@
 import React,{ useState,useEffect, useContext } from 'react'
-import { StyleSheet, FlatList, RefreshControl, Text, View} from 'react-native'
+import { StyleSheet, FlatList, RefreshControl, Text, View, TouchableOpacity, StatusBar } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CardDoacao from '../../../components/CardDoacoesUsuario'
@@ -7,6 +7,7 @@ import api from '../../../services/api'
 import { UserContext } from '../../../contexts/UserContext'
 import { Dropdown } from "react-native-element-dropdown"
 import { Feather } from "@expo/vector-icons"
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useFocusEffect } from '@react-navigation/native';
 
 export default function ListDoacoes() {
@@ -17,6 +18,7 @@ export default function ListDoacoes() {
   const [error, setError] = useState(null)
   const [selectedValue, setSelectedValue] = useState(0)
   const [value, setValue] = useState(null);
+  const [show, setShow] = useState(false)
   const [isFocus, setIsFocus] = useState(false);
 
   const combodata = [
@@ -43,6 +45,7 @@ export default function ListDoacoes() {
 
   const onRefresh = async () => {
     setRefreshing(true);
+    filterData()
     await fetchData();
     setRefreshing(false);
   };
@@ -59,6 +62,14 @@ export default function ListDoacoes() {
     })
   };
 
+  const onChange = (selectedDate) => {
+    setShow(false);
+    const day = selectedDate.getDate().toString();
+    const month = (selectedDate.getMonth() + 1).toString();
+    const year = selectedDate.getFullYear().toString();
+    const string_date = day + '/' + month + '/' + year
+    setData(data.filter((item) => item.data_doacao.indexOf(string_date.toString()) > -1))
+  };
 
   useEffect(() => {filterData()}, [selectedValue])
 
@@ -70,24 +81,8 @@ export default function ListDoacoes() {
       </Animatable.View>
 
       <Animatable.View animation="fadeInUp">
-        <View>
-          <Dropdown
-            style={styles.dropdown}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            iconStyle={styles.iconStyle}
-            data={combodata}
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={combodata[selectedValue].label}
-            value={selectedValue}
-            onChange={(item) => setSelectedValue(item.value)}
-            renderRightIcon={() => <Feather name="filter" size={20} />}
-          />
-        </View>
+        
         <FlatList
-          style={styles.cards}
           data={data}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
           renderItem={({ item }) => (
@@ -98,6 +93,34 @@ export default function ListDoacoes() {
               trajetoria={item.trajetoria}
             />
           )}
+          ListHeaderComponent={
+            <View style={styles.filterContainer}>
+            <Dropdown
+              style={styles.dropdown}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              iconStyle={styles.iconStyle}
+              data={combodata}
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={combodata[selectedValue].label}
+              value={selectedValue}
+              onChange={(item) => setSelectedValue(item.value)}
+              renderRightIcon={() => <Feather name="filter" size={20} />}
+            />
+            <TouchableOpacity style={styles.filter} onPress={() => setShow(!show)}>
+              <Feather name="calendar" size={20} />
+            </TouchableOpacity>
+            <DateTimePickerModal
+              isVisible={show}
+              mode="date"
+              onConfirm={onChange}
+              onCancel={() => setShow(!show)}
+            />
+            <StatusBar barStyle="default" />
+          </View> 
+          }
           keyExtractor={item => item.id.toString()}
           contentContainerStyle={{ paddingBottom: 20 }}
         />
@@ -118,7 +141,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#4e0189',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
+    marginBottom: 3,
   },
   title:{
     fontSize: 25,
@@ -130,7 +153,27 @@ const styles = StyleSheet.create({
     height:50,
     backgroundColor:'red',
   },
+  filterContainer:{
+    flexDirection:'row',
+    marginHorizontal:'5%',
+  },
   dropdown: {
+    flex: 4,
+    height: 55,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingHorizontal: 8,
+  },
+  filter:{
+    flex:1,
+    justifyContent: 'center',
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 20,
+    alignItems:'center',
+  },
+  calendar: {
     marginHorizontal: 20,
     height: 55,
     borderColor: "gray",

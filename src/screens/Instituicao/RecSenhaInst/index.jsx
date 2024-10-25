@@ -101,7 +101,7 @@ import {
               style={styles.arrow}
               name="arrow-left"
               size={30}
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => navigation.navigate("LoginInst")}
             />
             <Text style={styles.message}>Recuperação de senha</Text>
           </View>
@@ -129,7 +129,7 @@ import {
               value={Codigo}
               style={styles.input}
               placeholder="00000"
-              keyboardType="default"
+              keyboardType="numeric"
               onChangeText={(text) => setCodigo(text)}
             />
   

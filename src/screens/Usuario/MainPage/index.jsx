@@ -158,7 +158,6 @@ export default function MainContent() {
 
       <Animatable.View style={styles.listcontainer} animation="fadeInUp">
         <View>
-          {mensagem != "" && <Message type={tipo} msg={mensagem} />}
           <Dropdown
             style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
             placeholderStyle={styles.placeholderStyle}

@@ -1,11 +1,12 @@
 import React,{useContext, useState,useEffect} from 'react'
 import api from '../../../services/api'
-import { View,Text,StyleSheet,TextInput,TouchableOpacity, ScrollView} from 'react-native'
+import { View,Text,StyleSheet,TextInput,TouchableOpacity, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
 import { Dropdown } from "react-native-element-dropdown";
 import { UserContext } from '../../../contexts/UserContext'
+import axios from 'axios'
 
 
 export default function CadastroInst() {
@@ -29,7 +30,6 @@ export default function CadastroInst() {
     "https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json";
   useEffect(() => {
     axios.get(jsoncidades).then((response) => {
-      console.log(JSON.stringify(response.data.estados));
       setEstados(response.data.estados);
     });
   }, []);
@@ -69,7 +69,6 @@ export default function CadastroInst() {
           response.data.dados[0].CEP,
           response.data.dados[0].Descricao
         );
-        navigation.navigate("Inst");
       } else {
         setError("email ou senha invalidos");
         console.log(error);
@@ -107,7 +106,7 @@ export default function CadastroInst() {
         delay={600}
         style={styles.containerForm}
       >
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.title}>Cnpj</Text>
           <TextInput
             value={Cnpj}
@@ -177,7 +176,6 @@ export default function CadastroInst() {
               handleEstadoChange(item);
               setIsFocus(false);
             }}
-            renderRightIcon={() => <Feather name="filter" size={20} />}
           />
 
           {Estado != "" && (
@@ -203,7 +201,6 @@ export default function CadastroInst() {
                   setCidade(item.value);
                   setIsFocus(false);
                 }}
-                renderRightIcon={() => <Feather name="filter" size={20} />}
               />
             </View>
           )}

@@ -94,7 +94,7 @@ export default function CadastroInst() {
         delay={600}
         style={styles.containerForm}
       >
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
           <Text style={styles.title}>Primeiro Nome</Text>
           <TextInput
             value={p_nome}

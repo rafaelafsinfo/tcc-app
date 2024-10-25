@@ -42,11 +42,19 @@ export default function OpcoesUsuario() {
                 cidade,
                 estado
             });
+            user.id = id
+            user.p_nome = p_nome
+            user.sobrenome = sobrenome
+            user.username = username
+            user.cidade = cidade
+            user.estado = estado
+
             console.log(response.data);
         } catch (error) {
             setError('Erro ao atualizar usuário');
             console.log(error);
         }
+        onRefresh()
     };
 
     useFocusEffect(
@@ -72,35 +80,30 @@ export default function OpcoesUsuario() {
                     <TextInput
                         style={styles.input}
                         value={p_nome}
-                        autoCapitalize='none'
                         onChangeText={text => setPNome(text)}
                     />
                     <Text style={styles.entradas}>Sobrenome:</Text>
                     <TextInput
                         style={styles.input}
                         value={sobrenome}
-                        autoCapitalize='none'
                         onChangeText={text => setSobrenome(text)}
                     />
                     <Text style={styles.entradas}>Username:</Text>
                     <TextInput
                         style={styles.input}
                         value={username}
-                        autoCapitalize='none'
                         onChangeText={text => setUsername(text)}
                     />
                     <Text style={styles.entradas}>Cidade:</Text>
                     <TextInput
                         style={styles.input}
                         value={cidade}
-                        autoCapitalize='none'
                         onChangeText={text => setCidade(text)}
                     />
                     <Text style={styles.entradas}>Estado:</Text>
                     <TextInput
                         style={styles.input}
                         value={estado}
-                        autoCapitalize='none'
                         onChangeText={text => setEstado(text)}
                     />
 
